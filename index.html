@@ -21,7 +21,6 @@
     body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:#0b1220}
     .container{max-width:1100px;margin:0 auto}
     .card{background:#fff;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
-    .chip{display:inline-block;padding:.45rem .75rem;border-radius:999px;font-weight:700}
     .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;font-weight:700;padding:.85rem 1.2rem}
     .btn-primary{background:#0b6b4e;color:#fff}
     .btn-outline{border:1px solid #0b6b4e;color:#0b6b4e;background:#fff}
@@ -37,8 +36,10 @@
   <!-- Header -->
   <header class="sticky top-0 bg-white/95 backdrop-blur shadow-sm z-50">
     <div class="container px-4 py-3 flex items-center gap-4">
-      <a href="#top" class="flex items-center gap-3 font-extrabold text-lg">
-        <img src="logo.png" alt="Oxford Executive Travel" class="w-14 h-14 object-contain" />
+      <!-- Click logo to open full PNG -->
+      <a href="logo.png" target="_blank" rel="noopener" class="flex items-center gap-3 font-extrabold text-lg">
+        <!-- Larger logo on desktop; still tidy on mobile -->
+        <img src="logo.png" alt="Oxford Executive Travel" class="w-16 h-16 md:w-20 md:h-20 object-contain" />
         <span>Oxford Executive Travel</span>
       </a>
       <nav class="ml-auto hidden md:flex items-center gap-6">
@@ -57,8 +58,6 @@
 
   <!-- Hero -->
   <section id="top" class="relative">
-    <!-- Optional background photo – replace URL with your own Oxford image if you like -->
-    <!-- <img src="your-oxford-photo.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-15"> -->
     <div class="bg-[linear-gradient(120deg,#0b1220,_#0b6b4e)] text-white">
       <div class="container px-4 py-14 md:py-18 grid md:grid-cols-2 gap-10 items-center">
         <div>
@@ -90,7 +89,6 @@
       <h2 class="text-3xl font-extrabold">Airport Transfers</h2>
       <p class="mt-1 text-slate-600">Reliable door-to-door transfers to and from all major UK airports: Heathrow, Gatwick, Luton, Stansted, London City, Birmingham, and Bristol. Eurostar at St Pancras and private jet terminals also covered.</p>
     </div>
-
     <div class="grid md:grid-cols-3 gap-6">
       <div class="card p-5">
         <h3 class="font-bold text-lg mb-2">Meet & Greet</h3>
@@ -118,7 +116,6 @@
           and Scotland including Edinburgh and Glasgow. Bespoke itineraries welcome.
         </p>
       </div>
-
       <div class="grid md:grid-cols-3 gap-6">
         <div class="card p-5">
           <h3 class="font-bold text-lg mb-2">Private Day Tours</h3>
@@ -139,20 +136,19 @@
   <!-- Europe -->
   <section id="europe" class="container px-4 py-10">
     <div class="section-head mb-5">
-      <h2 class="text-3xl font-extrabold"> UK Europe Transfers </h2>
+      <h2 class="text-3xl font-extrabold">Europe & Long-Distance</h2>
       <p class="mt-1 text-slate-600">
         Door-to-door journeys to Paris, Brussels, Amsterdam and beyond. Return collections if you’re stranded abroad.
         Route planning via Eurotunnel or ferries to suit your schedule. Multi-stop and overnight routes available on request.
       </p>
     </div>
-
     <div class="grid md:grid-cols-3 gap-6">
       <div class="card p-5">
         <h3 class="font-bold text-lg mb-2">Route Planning</h3>
         <p class="text-sm">Efficient itineraries via Eurotunnel or ferry with sensible rest stops.</p>
       </div>
       <div class="card p-5">
-        <h3 class="font-bold text-lg mb-2">Space For Luggage</h3>
+        <h3 class="font-bold text-lg mb-2">Space for Luggage</h3>
         <p class="text-sm">MPV capacity for families, groups, and ski or golf trips.</p>
       </div>
       <div class="card p-5">
@@ -170,9 +166,10 @@
         <p class="mt-1 text-slate-600">Send your trip details and we’ll confirm availability, a fixed quote, and a secure Stripe payment link.</p>
       </div>
 
-      <div class="grid md:grid-cols-5 gap-6">
+      <!-- Equal-height grid -->
+      <div class="grid md:grid-cols-5 gap-6 items-start md:items-stretch">
         <!-- Form (wider) -->
-        <form id="bookingForm" class="card p-5 md:col-span-3">
+        <form id="bookingForm" class="card p-5 md:col-span-3 h-full">
           <div class="grid gap-4">
             <div class="grid md:grid-cols-2 gap-4">
               <div>
@@ -251,11 +248,13 @@
           </div>
         </form>
 
-        <!-- Map fills full height of its card -->
-<div class="card p-0 mb-6" style="height:500px; overflow:hidden; border-radius:12px;">
-  <div id="map" style="height:100%; width:100%;"></div>
-</div>
- </section>
+        <!-- Map column (matches form height) -->
+        <div id="mapCard" class="card md:col-span-2 overflow-hidden h-full">
+          <div id="map" style="width:100%; height:100%; min-height:520px;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Contact -->
   <section id="contact" class="container px-4 py-10">
@@ -304,6 +303,19 @@ Notes: ${v('notes')}`
       window.location.href = `mailto:bookings@oxfordexecutivetravel.co.uk?subject=${subject}&body=${body}`;
     });
 
+    // Keep map column same height as form (desktop)
+    function syncMapHeight() {
+      const form = document.getElementById('bookingForm');
+      const mapCard = document.getElementById('mapCard');
+      if (!form || !mapCard) return;
+      if (window.innerWidth >= 768) {
+        mapCard.style.height = form.offsetHeight + 'px';
+      } else {
+        mapCard.style.height = 'auto';
+      }
+    }
+    window.addEventListener('resize', syncMapHeight);
+
     // Google Maps + Places
     let map;
     function initMap() {
@@ -313,6 +325,8 @@ Notes: ${v('notes')}`
       });
       setupAutocomplete('pickup');
       setupAutocomplete('dropoff');
+      // after map ready, sync heights
+      setTimeout(syncMapHeight, 100);
     }
     function setupAutocomplete(id) {
       const input = document.getElementById(id);
@@ -328,12 +342,12 @@ Notes: ${v('notes')}`
           map.panTo(place.geometry.location);
           map.setZoom(13);
         }
+        syncMapHeight();
       });
     }
   </script>
 
-  <!-- Google Maps API – keep your existing restricted key here -->
+  <!-- Google Maps API – keep your restricted key -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZGBxqIbQwoZOpm0OEScJEuLJxkyIPqyQ&libraries=places&callback=initMap" async defer></script>
 </body>
 </html>
-
