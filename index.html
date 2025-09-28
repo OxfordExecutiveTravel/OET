@@ -38,7 +38,7 @@
   <header class="sticky top-0 bg-white/95 backdrop-blur shadow-sm z-50">
     <div class="container px-4 py-3 flex items-center gap-4">
       <a href="#top" class="flex items-center gap-3 font-extrabold text-lg">
-        <img src="logo.png" alt="Oxford Executive Travel" class="w-8 h-8 object-contain" />
+        <img src="logo.png" alt="Oxford Executive Travel" class="w-14 h-14 object-contain" />
         <span>Oxford Executive Travel</span>
       </a>
       <nav class="ml-auto hidden md:flex items-center gap-6">
@@ -139,7 +139,7 @@
   <!-- Europe -->
   <section id="europe" class="container px-4 py-10">
     <div class="section-head mb-5">
-      <h2 class="text-3xl font-extrabold">Europe & Long-Distance</h2>
+      <h2 class="text-3xl font-extrabold"> UK Europe Transfers </h2>
       <p class="mt-1 text-slate-600">
         Door-to-door journeys to Paris, Brussels, Amsterdam and beyond. Return collections if you’re stranded abroad.
         Route planning via Eurotunnel or ferries to suit your schedule. Multi-stop and overnight routes available on request.
@@ -251,13 +251,11 @@
           </div>
         </form>
 
-        <!-- Map (narrower) -->
-        <div class="card p-3 md:col-span-2">
-          <div id="map" style="height:300px;width:100%;border-radius:12px;overflow:hidden"></div>
-        </div>
-      </div>
-    </div>
-  </section>
+        <!-- Map fills full height of its card -->
+<div class="card p-0 mb-6" style="height:500px; overflow:hidden; border-radius:12px;">
+  <div id="map" style="height:100%; width:100%;"></div>
+</div>
+ </section>
 
   <!-- Contact -->
   <section id="contact" class="container px-4 py-10">
@@ -338,3 +336,4 @@ Notes: ${v('notes')}`
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZGBxqIbQwoZOpm0OEScJEuLJxkyIPqyQ&libraries=places&callback=initMap" async defer></script>
 </body>
 </html>
+
