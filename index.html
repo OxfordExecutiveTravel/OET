@@ -235,13 +235,26 @@
               </div>
             </div>
 
-            <div class="flex flex-wrap gap-3 pt-2">
-              <button type="submit" class="btn btn-primary">Send via Email</button>
-              <a id="whatsBtn" class="btn btn-outline" href="https://wa.me/447344145197" target="_blank" rel="noopener">
-                <!-- WhatsApp SVG -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M19.05 4.91A9.94 9.94 0 0 0 12.01 2C6.49 2 2 6.49 2 12.01c0 1.77.46 3.5 1.33 5.04L2 22l5.07-1.31a9.96 9.96 0 0 0 4.93 1.29h.01c5.52 0 10.01-4.49 10.01-10.01 0-2.67-1.04-5.18-2.97-7.06ZM12 20.02c-1.6 0-3.16-.43-4.52-1.24l-.32-.19-2.99.77.8-2.92-.2-.33A7.95 7.95 0 1 1 12 20.02Zm4.61-5.9c-.25-.12-1.49-.74-1.72-.83-.23-.09-.4-.12-.57.12-.17.25-.66.83-.8 1-.15.17-.3.19-.55.07-.25-.12-1.06-.39-2.02-1.25-.75-.67-1.25-1.49-1.4-1.74-.15-.25-.02-.39.11-.51.11-.11.25-.3.37-.45.12-.15.16-.25.25-.42.08-.17.04-.32-.02-.45-.07-.12-.57-1.37-.78-1.88-.2-.48-.4-.42-.57-.43l-.49-.01c-.17 0-.45.06-.68.32-.23.25-.9.88-.9 2.14 0 1.26.94 2.47 1.07 2.64.12.17 1.86 2.83 4.51 3.96.63.27 1.12.43 1.5.55.63.2 1.2.17 1.65.1.5-.07 1.49-.61 1.7-1.2.21-.59.21-1.1.14-1.2-.06-.1-.23-.16-.48-.28Z"/></svg>
-                WhatsApp
-              </a>
+          <!-- ===== BUTTON SECTION START ===== -->
+<div class="flex flex-wrap gap-3 pt-2">
+  <!-- Email Button -->
+  <button type="submit" class="btn btn-primary">Send via Email</button>
+
+  <!-- WhatsApp Button -->
+  <a id="whatsBtn" class="btn btn-outline" href="https://wa.me/447344145197" target="_blank" rel="noopener">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M19.05 4.91A9.94 9.94 0 0 0 12.01 2C6.49 2 2 6.49 2 12.01c0 1.77.46 3.5 1.33 5.04L2 22l5.07-1.31a9.96 9.96 0 0 0 4.93 1.29h.01c5.52 0 10.01-4.49 10.01-10.01 0-2.67-1.04-5.18-2.97-7.06ZM12 20.02c-1.6 0-3.16-.43-4.52-1.24l-.32-.19-2.99.77.8-2.92-.2-.33A7.95 7.95 0 1 1 12 20.02Zm4.61-5.9c-.25-.12-1.49-.74-1.72-.83-.23-.09-.4-.12-.57.12-.17.25-.66.83-.8 1-.15.17-.3.19-.55.07-.25-.12-1.06-.39-2.02-1.25-.75-.67-1.25-1.49-1.4-1.74-.15-.25-.02-.39.11-.51.11-.11.25-.3.37-.45.12-.15.16-.25.25-.42.08-.17.04-.32-.02-.45-.07-.12-.57-1.37-.78-1.88-.2-.48-.4-.42-.57-.43l-.49-.01c-.17 0-.45.06-.68.32-.23.25-.9.88-.9 2.14 0 1.26.94 2.47 1.07 2.64.12.17 1.86 2.83 4.51 3.96.63.27 1.12.43 1.5.55.63.2 1.2.17 1.65.1.5-.07 1.49-.61 1.7-1.2.21-.59.21-1.1.14-1.2-.06-.1-.23-.16-.48-.28Z"/></svg>
+    WhatsApp
+  </a>
+
+  <!-- Stripe Payment Button -->
+  <a href="https://book.stripe.com/00waEZ90mfqH10jdRKcQU00" 
+     target="_blank" rel="noopener" 
+     class="btn btn-primary bg-[#635bff] hover:bg-[#5147d7]">
+     💳 Pay Securely
+  </a>
+</div>
+<!-- ===== BUTTON SECTION END ===== -->
+
             </div>
 
             <p class="text-xs text-gray-500">You’ll receive a quick reply with availability, a fixed quote, and a secure Stripe payment link.</p>
@@ -351,3 +364,4 @@ Notes: ${v('notes')}`
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZGBxqIbQwoZOpm0OEScJEuLJxkyIPqyQ&libraries=places&callback=initMap" async defer></script>
 </body>
 </html>
+
