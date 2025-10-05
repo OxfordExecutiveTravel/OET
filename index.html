@@ -64,39 +64,46 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section id="top" class="bg-[linear-gradient(120deg,#0b1220,_#0b6b4e)] text-white">
-    <div class="container px-4 py-12 md:py-16 grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Airport Transfers, UK Tours & Europe</h1>
-        <p class="text-lg mt-4 opacity-90">
-          Oxford-based transfers in Mercedes E-Class & V-Class.
-          <b>Licensed & Insured Drivers.</b> 20+ years’ professional experience.
-        </p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a class="btn btn-primary" href="#booking">Book / Get a Quote</a>
+  <!-- Hero (de-duplicated) -->
+<section id="top" class="bg-[linear-gradient(120deg,#0b1220,_#0b6b4e)] text-white">
+  <div class="container px-4 py-12 md:py-16 grid md:grid-cols-2 gap-10 items-center">
+    <!-- Left: headline + strapline -->
+    <div>
+      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
+        Welcome to Oxford Executive Travel
+      </h1>
+      <p class="text-lg mt-4 opacity-90">
+        Executive private hire from Oxford — airport transfers, UK tours, Europe long-distance and same-day courier.
+        Mercedes E-Class & V-Class with licensed, insured drivers.
+      </p>
 
-          <!-- WhatsApp – brand icon -->
-          <a class="btn btn-wa" href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote."
-             target="_blank" rel="noopener" aria-label="WhatsApp fast reply">
-            <img class="brand-ico" src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="" aria-hidden="true">
-            Fast reply
-          </a>
-        </div>
-      </div>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="#booking">Book / Get a Quote</a>
 
-      <div class="card p-5 bg-white text-slate-900">
-        <h3 class="text-xl font-bold mb-3">Why Travel With Us</h3>
-        <ul class="space-y-2 text-sm">
-          <li><b>Licensed & Insured Drivers</b></li>
-          <li><b>Executive Vehicles:</b> Mercedes E-Class (1–4) & V-Class (up to 7)</li>
-          <li><b>Free On-Board Wi-Fi</b> & bottled water</li>
-          <li><b>Fixed Quotes</b> with written confirmation</li>
-          <li><b>Flexible Itineraries</b> — we follow your route & timings</li>
-        </ul>
+        <!-- WhatsApp – brand icon -->
+        <a class="btn btn-wa"
+           href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote."
+           target="_blank" rel="noopener" aria-label="WhatsApp fast reply">
+          <img class="brand-ico" src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="" aria-hidden="true">
+          Fast reply
+        </a>
       </div>
     </div>
-  </section>
+
+    <!-- Right: services (no repetition of licensing/vehicles) -->
+    <div class="card p-5 bg-white text-slate-900">
+      <h3 class="text-xl font-bold mb-3">How We Can Help</h3>
+      <ul class="space-y-2 text-sm">
+        <li><b>Airport Transfers:</b> Heathrow, Gatwick, Luton, Stansted, London City, Birmingham, Bristol & Eurostar.</li>
+        <li><b>UK Tours:</b> Cotswolds, Oxford colleges, Blenheim, Bath, Stonehenge, Lake District, Snowdonia, York & Scotland.</li>
+        <li><b>Europe & Long-Distance:</b> Paris, Brussels, Amsterdam and beyond — Eurotunnel or ferry.</li>
+        <li><b>Courier & Luggage:</b> Same-day delivery, delayed bags, documents, proof of delivery.</li>
+        <li><b>Clear Quotes:</b> Written confirmation before travel.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 
   <!-- Airport Transfers -->
   <section id="airports" class="container px-4 py-10">
