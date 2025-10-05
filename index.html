@@ -4,23 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Oxford Executive Travel | Airport Transfers, UK Tours & Europe</title>
-
-  <!-- Meta / SEO -->
-  <meta name="description" content="Oxford-based executive transfers in Mercedes E-Class & V-Class. Licensed & insured drivers with 20+ years’ experience. Airport transfers, UK tours, Europe long-distance, and same-day courier." />
+  <meta name="description" content="Oxford-based executive transfers in Mercedes E-Class & V-Class. Licensed & insured drivers with 20+ years’ experience. Airport transfers, UK tours, Europe long-distance, and same-day courier.">
   <link rel="canonical" href="https://oxfordexecutivetravel.co.uk/" />
-  <meta property="og:title" content="Oxford Executive Travel" />
-  <meta property="og:description" content="Airport Transfers, UK Tours & Europe from Oxford." />
-  <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#0b1220" />
-
-  <!-- Icons (add /favicon.png to repo root) -->
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  <link rel="apple-touch-icon" href="/favicon.png" />
-
-  <!-- Fonts / CSS -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <meta property="og:title" content="Oxford Executive Travel">
+  <meta property="og:description" content="Airport Transfers, UK Tours & Europe from Oxford.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0b1220">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-
   <style>
     html{scroll-behavior:smooth}
     body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:#0b1220}
@@ -31,47 +22,26 @@
     .section-head{display:flex;align-items:center;gap:.8rem;background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;padding:1rem 1.25rem;margin-bottom:1rem}
     .icon{width:26px;height:26px;flex:0 0 26px;color:#0b6b4e}
     .nav-link{font-weight:600}
+    .badge{display:inline-flex;align-items:center;gap:.45rem;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;border-radius:9999px;padding:.35rem .6rem;font-weight:700;font-size:.88rem}
+    /* Buttons */
     .btn{display:inline-flex;align-items:center;gap:.5rem;justify-content:center;border-radius:12px;font-weight:700;padding:.85rem 1.1rem;transition:transform .04s}
     .btn:active{transform:translateY(1px)}
     .btn-primary{background:#0b6b4e;color:#fff}
+    .btn-outline{border:1px solid #0b6b4e;color:#0b6b4e;background:#fff}
     .btn-wa{background:#25D366;color:#fff}
     .btn-stripe{background:#635BFF;color:#fff}
     .btn-paypal{background:#003087;color:#fff}
     .brand-ico{width:20px;height:20px;display:inline-block}
-    .pay-later{display:inline-flex;align-items:center;gap:.35rem;border:1px dashed #cbd5e1;border-radius:9999px;padding:.45rem .75rem;color:#334155;background:#fff}
+    /* Payment badges row */
+    .pill{display:inline-flex;align-items:center;gap:.5rem;border-radius:9999px;padding:.45rem .7rem;font-weight:700;font-size:.9rem;color:#fff}
+    .pill-apple{background:#000}
+    .pill-google{background:#1a73e8}
+    .pill-stripe{background:#635BFF}
+    .pill-paypal{background:#003087}
+    /* Map height (mobile & desktop) */
     #map{height:420px;width:100%}
     @media (min-width:768px){ #map{height:560px} }
-    .alert{background:#ecfdf5;border:1px solid #10b98133;color:#065f46}
-    /* Ensure Places autocomplete dropdown is above cards */
-    .pac-container{ z-index: 99999 !important; }
   </style>
-
-  <!-- LocalBusiness Schema for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Oxford Executive Travel",
-    "image": "https://oxfordexecutivetravel.co.uk/logo.png",
-    "url": "https://oxfordexecutivetravel.co.uk/",
-    "telephone": "+447344145197",
-    "priceRange": "££",
-    "areaServed": ["Oxford", "Cotswolds", "London", "UK", "Europe"],
-    "description": "Oxford-based executive transfers in Mercedes E-Class & V-Class. Airport transfers, UK tours, Europe long-distance and same-day courier.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Oxford",
-      "addressRegion": "Oxfordshire",
-      "addressCountry": "GB"
-    },
-    "openingHoursSpecification": [{
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-      "opens": "00:00",
-      "closes": "23:59"
-    }]
-  }
-  </script>
 </head>
 <body class="bg-white">
 
@@ -79,7 +49,7 @@
   <header class="sticky top-0 bg-white/95 backdrop-blur shadow-sm z-50">
     <div class="container px-4 py-3 flex items-center gap-4">
       <a href="#top" class="flex items-center gap-3 font-extrabold text-lg" title="Oxford Executive Travel">
-        <img src="./logo.png" alt="Oxford Executive Travel" class="w-20 h-20 md:w-24 md:h-24 object-contain" />
+        <img src="./logo.png" alt="Oxford Executive Travel" class="w-16 h-16 md:w-20 md:h-20 object-contain" />
         <span class="leading-tight">Oxford Executive Travel</span>
       </a>
       <nav class="ml-auto hidden md:flex items-center gap-6">
@@ -87,7 +57,6 @@
         <a class="nav-link hover:text-emerald-700" href="#uktours">UK Tours</a>
         <a class="nav-link hover:text-emerald-700" href="#europe">Europe</a>
         <a class="nav-link hover:text-emerald-700" href="#courier">Courier</a>
-        <a class="nav-link hover:text-emerald-700" href="#pricing">Pricing</a>
         <a class="nav-link hover:text-emerald-700" href="#booking">Booking</a>
         <a class="nav-link hover:text-emerald-700" href="#contact">Contact</a>
       </nav>
@@ -98,29 +67,29 @@
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero (no duplication of licensing copy) -->
   <section id="top" class="bg-[linear-gradient(120deg,#0b1220,_#0b6b4e)] text-white">
     <div class="container px-4 py-12 md:py-16 grid md:grid-cols-2 gap-10 items-center">
       <div>
-        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Welcome to Oxford Executive Travel</h1>
-        <p class="text-lg mt-4 opacity-90">
-          Executive private hire from Oxford — airport transfers, UK tours, Europe long-distance and same-day courier.
-          Mercedes E-Class & V-Class with licensed, insured drivers.
-        </p>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Airport Transfers, UK Tours & Europe</h1>
+        <p class="text-lg mt-4 opacity-90">Oxford-based transfers in Mercedes E-Class & V-Class. Licensed & insured drivers. 20+ years’ professional experience.</p>
         <div class="mt-6 flex flex-wrap gap-3">
           <a class="btn btn-primary" href="#booking">Book / Get a Quote</a>
-          <a class="btn btn-wa" href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote." target="_blank" rel="noopener" aria-label="WhatsApp fast reply">
-            <img class="brand-ico" src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="" aria-hidden="true"> Fast reply
+          <a class="btn btn-wa" href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote." target="_blank" rel="noopener" aria-label="WhatsApp — fast reply">
+            <!-- Official-style WhatsApp glyph -->
+            <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.42c-.27-.14-1.58-.78-1.83-.87-.25-.09-.43-.14-.62.14-.18.27-.71.87-.87 1.05-.16.18-.32.2-.58.07-.27-.14-1.14-.42-2.18-1.3-.81-.71-1.35-1.58-1.51-1.85-.16-.27-.02-.41.12-.54.12-.12.27-.32.4-.47.13-.16.18-.27.28-.45.09-.18.05-.34-.02-.47-.07-.13-.63-1.46-.86-2-.22-.51-.44-.45-.63-.46l-.54-.01c-.19 0-.5.06-.76.35-.26.28-1.01.96-1.01 2.34 0 1.38 1.03 2.7 1.18 2.89.14.18 1.99 3.11 4.81 4.36.67.3 1.2.47 1.6.61.67.22 1.29.19 1.77.11.54-.08 1.6-.67 1.83-1.29.23-.62.23-1.19.15-1.29-.07-.11-.25-.17-.52-.3z"/><path d="M27.6 4.39A13.43 13.43 0 0 0 16.06.44C7.91.44 1.28 7.08 1.28 15.22c0 2.38.62 4.69 1.8 6.74L.4 31.56l9.77-2.52a13.51 13.51 0 0 0 5.89 1.36h.02c8.14 0 14.78-6.64 14.78-14.78 0-3.96-1.54-7.68-4.27-10.43zM16.08 28.5h-.01a11.7 11.7 0 0 1-5.8-1.56l-.42-.25-5.8 1.5 1.55-5.64-.26-.43a11.7 11.7 0 1 1 10.74 6.38z"/></svg>
+            Fast reply
           </a>
         </div>
       </div>
+
       <div class="card p-5 bg-white text-slate-900">
         <h3 class="text-xl font-bold mb-3">How We Can Help</h3>
         <ul class="space-y-2 text-sm">
           <li><b>Airport Transfers:</b> Heathrow, Gatwick, Luton, Stansted, London City, Birmingham, Bristol & Eurostar.</li>
           <li><b>UK Tours:</b> Cotswolds, Oxford colleges, Blenheim, Bath, Stonehenge, Lake District, Snowdonia, York & Scotland.</li>
           <li><b>Europe & Long-Distance:</b> Paris, Brussels, Amsterdam and beyond — Eurotunnel or ferry.</li>
-          <li><b>Courier & Luggage:</b> Same-day delivery, delayed bags, documents, proof of delivery.</li>
+          <li><b>Courier & Luggage:</b> Same-day delivery, delayed bags, documents — proof of delivery.</li>
           <li><b>Clear Quotes:</b> Written confirmation before travel.</li>
         </ul>
       </div>
@@ -133,13 +102,14 @@
       <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M2 16l20-8-9 10v4l-3-3-4 2 1-5-5 0z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div>
         <h2 class="text-3xl font-extrabold m-0">Airport Transfers</h2>
-        <p class="m-0 text-slate-600">Door-to-door between Oxford and all major UK airports: Heathrow, Gatwick, Luton, Stansted, London City, Birmingham & Bristol. Eurostar St Pancras covered.</p>
+        <p class="m-0 text-slate-600">Door-to-door between Oxford and all UK airports: Heathrow, Gatwick, Luton, Stansted, London City, Birmingham & Bristol. Eurostar St Pancras covered.</p>
       </div>
     </div>
+
     <div class="grid md:grid-cols-3 gap-6">
       <div class="card p-5"><h3 class="font-bold text-lg mb-2">Meet & Greet</h3><p class="text-sm">Flight tracking, terminal pickup, and help with luggage as standard.</p></div>
       <div class="card p-5"><h3 class="font-bold text-lg mb-2">Business & Family</h3><p class="text-sm">Quiet, comfortable vehicles. Child seats available on request.</p></div>
-      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Space for Luggage</h3><p class="text-sm">Ideal for families and longer journeys; room for cases or equipment.</p></div>
+      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Space for Luggage</h3><p class="text-sm">Ideal for families, golf or ski trips, and longer journeys.</p></div>
     </div>
   </section>
 
@@ -153,6 +123,7 @@
           <p class="m-0 text-slate-600">Cotswolds, Bourton-on-the-Water, Bibury, Broadway Tower, Stratford-upon-Avon, Stonehenge, Bath, Blenheim Palace, Oxford colleges, Lake District, Snowdonia, York & Scotland (Edinburgh, Glasgow). We tailor to your itinerary.</p>
         </div>
       </div>
+
       <div class="grid md:grid-cols-3 gap-6">
         <div class="card p-5"><h3 class="font-bold text-lg mb-2">Private Day Tours</h3><p class="text-sm">Your schedule, photo stops and lunch breaks at your pace.</p></div>
         <div class="card p-5"><h3 class="font-bold text-lg mb-2">Family & Theme Parks</h3><p class="text-sm">Legoland, Thorpe Park, Chessington & Alton Towers — comfortable returns.</p></div>
@@ -167,13 +138,14 @@
       <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M3 16l2-6 3-2h6l3 2 2 6M6 16v2m12-2v2M7 16h10M3 16h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div>
         <h2 class="text-3xl font-extrabold m-0">Europe & Long-Distance</h2>
-        <p class="m-0 text-slate-600">Door-to-door to Paris, Brussels, Amsterdam and beyond. Return collections available. We follow your preferred route & timings via Eurotunnel or ferry.</p>
+        <p class="m-0 text-slate-600">Door-to-door to Paris, Brussels, Amsterdam and beyond. Return collections if you’re stranded abroad. We follow your route & timings (Eurotunnel or ferry).</p>
       </div>
     </div>
+
     <div class="grid md:grid-cols-3 gap-6">
       <div class="card p-5"><h3 class="font-bold text-lg mb-2">Flexible Scheduling</h3><p class="text-sm">Single or multi-stop, day or overnight — built around your plan.</p></div>
-      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Comfort for Distance</h3><p class="text-sm">Executive seating, charging, and room for luggage or equipment.</p></div>
-      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Written Quote</h3><p class="text-sm">Clear pricing before travel with email confirmation.</p></div>
+      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Comfort for Distance</h3><p class="text-sm">Executive seating, charging, and space for cases or equipment.</p></div>
+      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Written Quote</h3><p class="text-sm">Clear pricing before travel, with email confirmation.</p></div>
     </div>
   </section>
 
@@ -187,68 +159,11 @@
           <p class="m-0 text-slate-600">Urgent luggage (including delayed/airport bags), documents and small removals across the UK & Europe. Point-to-point, tracked and signed on delivery.</p>
         </div>
       </div>
+
       <div class="grid md:grid-cols-3 gap-6">
         <div class="card p-5"><h3 class="font-bold text-lg mb-2">Direct, Same-Day</h3><p class="text-sm">We collect and drive straight to the destination — no hubs.</p></div>
         <div class="card p-5"><h3 class="font-bold text-lg mb-2">Luggage & Parcels</h3><p class="text-sm">Airline-delayed bags, passports, laptops, legal documents and more.</p></div>
         <div class="card p-5"><h3 class="font-bold text-lg mb-2">Proof of Delivery</h3><p class="text-sm">Photo or signature on handover; live updates available.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section id="pricing" class="bg-white">
-    <div class="container px-4 py-10">
-      <div class="section-head">
-        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M6 22V6l6-3 6 3v16M6 10h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <div>
-          <h2 class="text-3xl font-extrabold m-0">Pricing Guide</h2>
-          <p class="m-0 text-slate-600">Guide prices below. Final quotes vary by vehicle, route, time of day and waiting. You’ll receive a written confirmation with the fixed price before travel.</p>
-        </div>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
-        <!-- Airports -->
-        <div class="card p-5">
-          <h3 class="text-xl font-bold mb-3">Airport Transfers (from Oxford)</h3>
-          <ul class="grid sm:grid-cols-2 gap-3 text-sm">
-            <li class="flex justify-between border rounded-lg px-3 py-2 bg-white"><span>Heathrow (T2–T5)</span><span class="font-semibold">from £120</span></li>
-            <li class="flex justify-between border rounded-lg px-3 py-2 bg-white"><span>Gatwick</span><span class="font-semibold">from £180</span></li>
-            <li class="flex justify-between border rounded-lg px-3 py-2 bg-white"><span>Luton</span><span class="font-semibold">from £145</span></li>
-            <li class="flex justify-between border rounded-lg px-3 py-2 bg-white"><span>Stansted</span><span class="font-semibold">from £180</span></li>
-            <li class="flex justify-between border rounded-lg px-3 py-2 bg-white"><span>London City</span><span class="font-semibold">from £190</span></li>
-          </ul>
-          <p class="mt-3 text-xs text-slate-500">Prices shown for Mercedes E-Class (1–4). V-Class/Vito (up to 7) quoted on request. Meet & Greet included.</p>
-        </div>
-
-        <!-- Popular UK Destinations -->
-        <div class="card p-5">
-          <h3 class="text-xl font-bold mb-3">Popular UK Destinations</h3>
-          <ul class="grid sm:grid-cols-1 gap-3 text-sm">
-            <li class="flex justify-between border rounded-lg px-3 py-2 bg-white"><span>Stonehenge</span><span class="font-semibold">from £150</span></li>
-            <li class="flex justify-between border rounded-lg px-3 py-2 bg-white"><span>Bath</span><span class="font-semibold">from £180</span></li>
-            <li class="flex justify-between border rounded-lg px-3 py-2 bg-white"><span>Brighton</span><span class="font-semibold">from £220</span></li>
-            <li class="flex justify-between border rounded-lg px-3 py-2 bg-white"><span>York</span><span class="font-semibold">from £380</span></li>
-          </ul>
-          <p class="mt-3 text-xs text-slate-500">Prices vary with vehicle size, time and day of travel, exact pickup/drop-off and waiting.</p>
-        </div>
-
-        <!-- Europe & Long Distance -->
-        <div class="card p-5">
-          <h3 class="text-xl font-bold mb-3">Europe & Long-Distance</h3>
-          <ul class="grid sm:grid-cols-1 gap-3 text-sm">
-            <li class="flex justify-between border rounded-lg px-3 py-2 bg-white"><span>European journeys</span><span class="font-semibold">from £1,200</span></li>
-          </ul>
-          <p class="mt-3 text-xs text-slate-500">Eurotunnel or ferry to suit your schedule. Multi-stop and overnights available on request.</p>
-        </div>
-
-        <!-- Courier -->
-        <div class="card p-5">
-          <h3 class="text-xl font-bold mb-3">Same-Day Courier & Luggage</h3>
-          <ul class="grid sm:grid-cols-1 gap-3 text-sm">
-            <li class="flex justify-between border rounded-lg px-3 py-2 bg-white"><span>Express point-to-point</span><span class="font-semibold">from £120</span></li>
-          </ul>
-          <p class="mt-3 text-xs text-slate-500">Tracked & signed-for deliveries. Airport delayed-bag collection available.</p>
-        </div>
       </div>
     </div>
   </section>
@@ -261,48 +176,38 @@
         <div><h2 class="text-3xl font-extrabold m-0">Book / Get a Quote</h2></div>
       </div>
 
-      <!-- success alert after submission redirect -->
-      <div id="thanks" class="alert rounded-xl p-4 mb-6 hidden">
-        Thank you — your request has been sent. We’ll reply shortly with availability and a fixed quote.
-      </div>
-
       <div class="grid md:grid-cols-5 gap-6">
-        <!-- Form (emails directly to bookings@) -->
-        <form id="bookingForm" class="card p-5 md:col-span-3"
-              action="https://formsubmit.co/bookings@oxfordexecutivetravel.co.uk"
-              method="POST">
-          <!-- FormSubmit options -->
-          <input type="hidden" name="_subject" value="New Booking / Quote Request - Website">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://oxfordexecutivetravel.co.uk/#thanks">
-          <input type="text" name="_honey" style="display:none">
-
+        <!-- Form -->
+        <form id="bookingForm" class="card p-5 md:col-span-3">
           <div class="grid gap-4">
             <div class="grid md:grid-cols-2 gap-4">
               <div>
                 <label class="block text-sm font-semibold mb-1">Pickup</label>
-                <input id="pickup" name="Pickup" class="input" type="text" placeholder="e.g. Heathrow T5 or OX1 1AA" autocomplete="off" required>
-                <input id="pickup_place_id" name="Pickup Place ID" type="hidden">
+                <input id="pickup" class="input" type="text" placeholder="e.g. Heathrow T5 or OX1 1AA" autocomplete="off">
+                <input id="pickup_place_id" type="hidden">
               </div>
               <div>
                 <label class="block text-sm font-semibold mb-1">Drop-off</label>
-                <input id="dropoff" name="Drop-off" class="input" type="text" placeholder="e.g. Oxford Station or W1A 1AA" autocomplete="off" required>
-                <input id="dropoff_place_id" name="Drop-off Place ID" type="hidden">
+                <input id="dropoff" class="input" type="text" placeholder="e.g. Oxford Station or W1A 1AA" autocomplete="off">
+                <input id="dropoff_place_id" type="hidden">
               </div>
             </div>
 
+            <div id="estimateRow" class="hidden">
+              <span class="badge" id="estimateBadge">Estimating…</span>
+            </div>
+
             <div class="grid md:grid-cols-2 gap-4">
-              <div><label class="block text-sm font-semibold mb-1">Date</label><input id="date" name="Date" class="input" type="date" required></div>
-              <div><label class="block text-sm font-semibold mb-1">Time</label><input id="time" name="Time" class="input" type="time" required></div>
+              <div><label class="block text-sm font-semibold mb-1">Date</label><input id="date" class="input" type="date" required></div>
+              <div><label class="block text-sm font-semibold mb-1">Time</label><input id="time" class="input" type="time" required></div>
             </div>
 
             <div class="grid md:grid-cols-3 gap-4">
-              <div><label class="block text-sm font-semibold mb-1">Passengers</label><input id="pax" name="Passengers" class="input" type="number" min="1" max="8" value="1" required></div>
-              <div><label class="block text-sm font-semibold mb-1">Luggage</label><input id="bags" name="Luggage" class="input" type="number" min="0" max="12" value="0"></div>
+              <div><label class="block text-sm font-semibold mb-1">Passengers</label><input id="pax" class="input" type="number" min="1" max="8" value="1" required></div>
+              <div><label class="block text-sm font-semibold mb-1">Luggage</label><input id="bags" class="input" type="number" min="0" max="12" value="0"></div>
               <div>
                 <label class="block text-sm font-semibold mb-1">Vehicle</label>
-                <select id="vehicle" name="Vehicle" class="input">
+                <select id="vehicle" class="input">
                   <option>Mercedes E-Class (1–4)</option>
                   <option>Mercedes V-Class (up to 7)</option>
                 </select>
@@ -310,44 +215,59 @@
             </div>
 
             <div class="grid md:grid-cols-2 gap-4">
-              <div><label class="block text-sm font-semibold mb-1">Your Name</label><input id="name" name="Name" class="input" type="text" required></div>
-              <div><label class="block text-sm font-semibold mb-1">Phone / WhatsApp</label><input id="phone" name="Phone" class="input" type="tel" placeholder="+44…" required></div>
+              <div><label class="block text-sm font-semibold mb-1">Your Name</label><input id="name" class="input" type="text" required></div>
+              <div><label class="block text-sm font-semibold mb-1">Phone / WhatsApp</label><input id="phone" class="input" type="tel" placeholder="+44…" required></div>
             </div>
 
             <div class="grid md:grid-cols-2 gap-4">
-              <div><label class="block text-sm font-semibold mb-1">Email</label><input id="email" name="Email" class="input" type="email" placeholder="you@example.com" required></div>
-              <div><label class="block text-sm font-semibold mb-1">Notes</label><input id="notes" name="Notes" class="input" type="text" placeholder="Flight no., child seat, courier details, etc."></div>
+              <div><label class="block text-sm font-semibold mb-1">Email</label><input id="email" class="input" type="email" placeholder="you@example.com" required></div>
+              <div><label class="block text-sm font-semibold mb-1">Notes</label><input id="notes" class="input" type="text" placeholder="Flight no., child seat, courier details, etc."></div>
             </div>
 
             <div class="flex flex-wrap items-center gap-3 pt-2">
-              <button type="submit" class="btn btn-primary">Request Quote</button>
+              <button type="submit" class="btn btn-primary">Send via Email</button>
 
-              <!-- WhatsApp Fast reply -->
-              <a class="btn btn-wa" href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote." target="_blank" rel="noopener">
-                <img class="brand-ico" src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="" aria-hidden="true">
+              <!-- WhatsApp -->
+              <a class="btn btn-wa"
+                 href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote."
+                 target="_blank" rel="noopener">
+                <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.42c-.27-.14-1.58-.78-1.83-.87-.25-.09-.43-.14-.62.14-.18.27-.71.87-.87 1.05-.16.18-.32.2-.58.07-.27-.14-1.14-.42-2.18-1.3-.81-.71-1.35-1.58-1.51-1.85-.16-.27-.02-.41.12-.54.12-.12.27-.32.4-.47.13-.16.18-.27.28-.45.09-.18.05-.34-.02-.47-.07-.13-.63-1.46-.86-2-.22-.51-.44-.45-.63-.46l-.54-.01c-.19 0-.5.06-.76.35-.26.28-1.01.96-1.01 2.34 0 1.38 1.03 2.7 1.18 2.89.14.18 1.99 3.11 4.81 4.36.67.3 1.2.47 1.6.61.67.22 1.29.19 1.77.11.54-.08 1.6-.67 1.83-1.29.23-.62.23-1.19.15-1.29-.07-.11-.25-.17-.52-.3z"/><path d="M27.6 4.39A13.43 13.43 0 0 0 16.06.44C7.91.44 1.28 7.08 1.28 15.22c0 2.38.62 4.69 1.8 6.74L.4 31.56l9.77-2.52a13.51 13.51 0 0 0 5.89 1.36h.02c8.14 0 14.78-6.64 14.78-14.78 0-3.96-1.54-7.68-4.27-10.43zM16.08 28.5h-.01a11.7 11.7 0 0 1-5.8-1.56l-.42-.25-5.8 1.5 1.55-5.64-.26-.43a11.7 11.7 0 1 1 10.74 6.38z"/></svg>
                 Fast reply
               </a>
 
               <!-- Stripe -->
               <a class="btn btn-stripe" href="https://buy.stripe.com/28E00l4K67Yf38r9BucQU01" target="_blank" rel="noopener">
-                <img class="brand-ico" src="https://cdn.simpleicons.org/stripe/ffffff" alt="" aria-hidden="true">
                 Pay with Card (Stripe)
               </a>
 
               <!-- PayPal -->
               <a class="btn btn-paypal" href="https://paypal.me/IsrarOCC" target="_blank" rel="noopener">
-                <img class="brand-ico" src="https://cdn.simpleicons.org/paypal/ffffff" alt="" aria-hidden="true">
-                PayPal
+                Pay with PayPal
               </a>
 
               <!-- Pay in person -->
-              <span class="pay-later">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M3 6h18v12H3zM3 10h18" stroke="#64748B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                pay in person (cash/card terminal)
+              <span class="border border-slate-300 rounded-full px-3 py-2 text-sm text-slate-700 bg-white">
+                or pay in person (cash/card terminal)
               </span>
             </div>
+
+            <!-- Payment method badges (informational) -->
+            <div class="mt-3 flex flex-wrap gap-2" aria-label="Payment methods supported">
+              <span class="pill pill-apple" title="Apple Pay via Stripe">
+                <!-- Apple logo -->
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.448 2.21-1.177 3.01-.75.82-2.03 1.45-3.1 1.38-.12-1.09.48-2.25 1.18-2.98.78-.85 2.12-1.48 3.1-1.41zM20.99 17.11c-.62 1.45-.91 2.1-1.71 3.39-1.11 1.71-2.67 3.86-4.6 3.88-1.08.02-1.82-.71-3.18-.71-1.37 0-2.16.7-3.23.73-1.95.04-3.45-1.84-4.57-3.54C1.2 18.05.02 14.09 1.81 11.44c1.01-1.53 2.66-2.48 4.51-2.51 1.08-.03 2.1.76 3.19.76 1.08 0 1.86-.76 3.14-.73 1.49.03 2.87.8 3.68 2.04-3.24 1.77-2.72 6.41.66 7.11z"/></svg>
+                Pay
+              </span>
+              <span class="pill pill-google" title="Google Pay via Stripe">
+                <!-- G mark -->
+                <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12.24 10.29v3.53h4.98c-.2 1.28-1.5 3.76-4.98 3.76-3 0-5.44-2.48-5.44-5.54 0-3.06 2.44-5.54 5.44-5.54 1.71 0 2.86.73 3.52 1.36l2.4-2.31C16.75 3.93 14.72 3 12.24 3 7.46 3 3.56 6.9 3.56 11.68s3.9 8.68 8.68 8.68c5 0 8.27-3.5 8.27-8.43 0-.57-.06-1-.14-1.64H12.24z"/></svg>
+                Pay
+              </span>
+              <span class="pill pill-stripe" title="Cards via Stripe">Cards</span>
+              <span class="pill pill-paypal" title="PayPal">PayPal</span>
+            </div>
+
+            <p class="text-xs text-gray-500 mt-2">Apple Pay / Google Pay show automatically on Stripe Checkout when supported by your device/browser.</p>
 
             <p class="text-xs text-gray-500">Estimates are guides only. You’ll receive a written confirmation with the fixed quote.</p>
           </div>
@@ -361,6 +281,76 @@
     </div>
   </section>
 
+  <!-- PRICING CARDS -->
+  <section class="container px-4 pb-10">
+    <!-- Airports -->
+    <div class="card p-5 mb-6">
+      <h3 class="text-xl font-bold mb-3">Airport Transfers (from Oxford)</h3>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
+          <span>Heathrow (T2–T5)</span><span class="font-semibold">from £120</span>
+        </li>
+        <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
+          <span>Gatwick</span><span class="font-semibold">from £180</span>
+        </li>
+        <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
+          <span>Luton</span><span class="font-semibold">from £145</span>
+        </li>
+        <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
+          <span>Stansted</span><span class="font-semibold">from £180</span>
+        </li>
+        <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
+          <span>London City</span><span class="font-semibold">from £190</span>
+        </li>
+      </ul>
+      <p class="mt-3 text-xs text-slate-500">
+        Prices shown for Mercedes E-Class (1–4). V-Class (up to 7) quoted on request. Meet & Greet included.
+      </p>
+    </div>
+
+    <!-- UK Destinations -->
+    <div class="card p-5 mb-6">
+      <h3 class="text-xl font-bold mb-3">Popular UK Destinations</h3>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
+          <span>Oxford → Stonehenge</span><span class="font-semibold">from £150</span>
+        </li>
+        <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
+          <span>Oxford → Bath</span><span class="font-semibold">from £180</span>
+        </li>
+        <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
+          <span>Oxford → Brighton</span><span class="font-semibold">from £220</span>
+        </li>
+        <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
+          <span>Oxford → York</span><span class="font-semibold">from £380</span>
+        </li>
+      </ul>
+      <p class="mt-3 text-xs text-slate-500">Guide prices vary by vehicle size, time/day, waiting and exact postcodes.</p>
+    </div>
+
+    <!-- Europe & Long-Distance -->
+    <div class="card p-5 mb-6">
+      <h3 class="text-xl font-bold mb-3">Europe & Long-Distance</h3>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
+          <span>European journeys</span><span class="font-semibold">from £1,200</span>
+        </li>
+      </ul>
+      <p class="mt-3 text-xs text-slate-500">Eurotunnel or ferry to suit your schedule. Multi-stop and overnights available.</p>
+    </div>
+
+    <!-- Courier -->
+    <div class="card p-5">
+      <h3 class="text-xl font-bold mb-3">Same-Day Courier & Luggage</h3>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
+          <span>Express point-to-point</span><span class="font-semibold">from £120</span>
+        </li>
+      </ul>
+      <p class="mt-3 text-xs text-slate-500">Tracked & signed-for deliveries. Airport delayed-bag collection available.</p>
+    </div>
+  </section>
+
   <!-- Contact -->
   <section id="contact" class="container px-4 py-10">
     <div class="section-head">
@@ -370,56 +360,100 @@
     <p>Phone: <a class="underline" href="tel:+447344145197">+44&nbsp;7344&nbsp;145197</a></p>
     <p>Email: <a class="underline" href="mailto:info@oxfordexecutivetravel.co.uk">info@oxfordexecutivetravel.co.uk</a> &nbsp;|&nbsp;
       <a class="underline" href="mailto:bookings@oxfordexecutivetravel.co.uk">bookings@oxfordexecutivetravel.co.uk</a></p>
-    <p><a class="underline" href="https://wa.me/447344145197" target="_blank" rel="noopener">WhatsApp Chat</a></p>
+    <p><a class="underline" href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote." target="_blank" rel="noopener">WhatsApp Chat — Fast reply</a></p>
   </section>
 
   <footer class="text-center py-6 border-t">
     <p>© <span id="year"></span> Oxford Executive Travel • Licensed & Insured</p>
   </footer>
 
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote."
+     target="_blank" rel="noopener"
+     class="fixed bottom-5 right-5 flex items-center gap-2 bg-[#25D366] text-white font-semibold rounded-full shadow-lg px-4 py-3"
+     aria-label="Chat on WhatsApp">
+    <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.42c-.27-.14-1.58-.78-1.83-.87-.25-.09-.43-.14-.62.14-.18.27-.71.87-.87 1.05-.16.18-.32.2-.58.07-.27-.14-1.14-.42-2.18-1.3-.81-.71-1.35-1.58-1.51-1.85-.16-.27-.02-.41.12-.54.12-.12.27-.32.4-.47.13-.16.18-.27.28-.45.09-.18.05-.34-.02-.47-.07-.13-.63-1.46-.86-2-.22-.51-.44-.45-.63-.46l-.54-.01c-.19 0-.5.06-.76.35-.26.28-1.01.96-1.01 2.34 0 1.38 1.03 2.7 1.18 2.89.14.18 1.99 3.11 4.81 4.36.67.3 1.2.47 1.6.61.67.22 1.29.19 1.77.11.54-.08 1.6-.67 1.83-1.29.23-.62.23-1.19.15-1.29-.07-.11-.25-.17-.52-.3z"/><path d="M27.6 4.39A13.43 13.43 0 0 0 16.06.44C7.91.44 1.28 7.08 1.28 15.22c0 2.38.62 4.69 1.8 6.74L.4 31.56l9.77-2.52a13.51 13.51 0 0 0 5.89 1.36h.02c8.14 0 14.78-6.64 14.78-14.78 0-3.96-1.54-7.68-4.27-10.43z"/></svg>
+    <span class="hidden sm:inline">Chat for a fast reply</span>
+  </a>
+
   <!-- Scripts -->
   <script>
-    // Footer Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Show thank-you alert when redirected back with #thanks
-    if (location.hash === '#thanks') {
-      const t = document.getElementById('thanks');
-      if (t) t.classList.remove('hidden');
-    }
+    // Email composer (mailto)
+    document.getElementById('bookingForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const v = id => document.getElementById(id)?.value || '';
+      const subject = encodeURIComponent('Booking request from website');
+      const body = encodeURIComponent(
+`Pickup: ${v('pickup')}
+Drop-off: ${v('dropoff')}
+Date/Time: ${v('date')} ${v('time')}
+Passengers: ${v('pax')}   Luggage: ${v('bags')}
+Vehicle: ${v('vehicle')}
 
-    // Google Maps + Places — expose callback globally
-    let map;
-    window.initMap = function initMap() {
-      const el = document.getElementById("map");
-      if (!el || !window.google) return;
-      map = new google.maps.Map(el, {
-        center: { lat: 51.7520, lng: -1.2577 }, // Oxford
-        zoom: 12,
+Name: ${v('name')}
+Phone: ${v('phone')}
+Email: ${v('email')}
+
+Notes: ${v('notes')}
+(Shown estimate was a guide only.)`
+      );
+      window.location.href = `mailto:bookings@oxfordexecutivetravel.co.uk?subject=${subject}&body=${body}`;
+    });
+
+    // Google Maps + Places + Distance Matrix
+    let map, pickupPlace, dropoffPlace;
+    function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 51.7520, lng: -1.2577 }, zoom: 12,
+        mapTypeControl: false, streetViewControl: false
       });
-      setupAutocomplete('pickup');
-      setupAutocomplete('dropoff');
-    };
-    function setupAutocomplete(id) {
+      setupAutocomplete('pickup', p => { pickupPlace = p; tryEstimate(); });
+      setupAutocomplete('dropoff', p => { dropoffPlace = p; tryEstimate(); });
+    }
+    function setupAutocomplete(id, onPicked) {
       const input = document.getElementById(id);
-      if (!input || !window.google || !google.maps.places) return;
       const ac = new google.maps.places.Autocomplete(input, {
         fields: ['place_id','formatted_address','name','geometry'],
       });
       ac.addListener('place_changed', () => {
         const place = ac.getPlace();
         const hidden = document.getElementById(id + '_place_id');
-        if (hidden && place && place.place_id) hidden.value = place.place_id;
-        if (place && place.formatted_address) input.value = place.formatted_address;
-        if (place?.geometry?.location && map) {
-          map.panTo(place.geometry.location);
-          map.setZoom(13);
-        }
+        if (hidden && place?.place_id) hidden.value = place.place_id;
+        if (place?.formatted_address) input.value = place.formatted_address;
+        if (place?.geometry?.location) { map.panTo(place.geometry.location); map.setZoom(13); }
+        if (onPicked) onPicked(place);
       });
+    }
+    function tryEstimate() {
+      const badge = document.getElementById('estimateBadge');
+      const row = document.getElementById('estimateRow');
+      if (!pickupPlace?.place_id || !dropoffPlace?.place_id) return;
+      row.classList.remove('hidden');
+      badge.textContent = 'Estimating…';
+      const svc = new google.maps.DistanceMatrixService();
+      svc.getDistanceMatrix(
+        {
+          origins: [{placeId: pickupPlace.place_id}],
+          destinations: [{placeId: dropoffPlace.place_id}],
+          travelMode: google.maps.TravelMode.DRIVING,
+          unitSystem: google.maps.UnitSystem.METRIC,
+        },
+        (res, status) => {
+          if (status !== 'OK' || !res?.rows?.[0]?.elements?.[0]) { badge.textContent = 'Estimate unavailable'; return; }
+          const el = res.rows[0].elements[0];
+          if (el.status !== 'OK') { badge.textContent = 'Estimate unavailable'; return; }
+          const km = el.distance.value / 1000;
+          const base = 45, perKm = 1.8, minFare = 60;
+          const guide = Math.max(minFare, Math.round((base + km * perKm) / 5) * 5);
+          badge.textContent = `Guide price: ~£${guide} (distance ${km.toFixed(1)} km)`;
+        }
+      );
     }
   </script>
 
-  <!-- Google Maps API (keep your restricted key) -->
+  <!-- Google Maps API (your restricted key) -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZGBxqIbQwoZOpm0OEScJEuLJxkyIPqyQ&libraries=places&callback=initMap" async defer></script>
 </body>
 </html>
