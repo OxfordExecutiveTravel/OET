@@ -4,14 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Oxford Executive Travel | Airport Transfers, UK Tours & Europe</title>
-  <meta name="description" content="Oxford-based executive transfers in Mercedes E-Class & V-Class. Licensed & insured drivers with 20+ years’ experience. Airport transfers, UK tours, Europe long-distance, and same-day courier.">
+  <meta name="description" content="Oxford-based executive private hire in Mercedes E-Class & V-Class. Licensed & insured drivers with 20+ years’ experience. Airport transfers, UK tours, Europe long-distance, and same-day courier & luggage.">
   <link rel="canonical" href="https://oxfordexecutivetravel.co.uk/" />
   <meta property="og:title" content="Oxford Executive Travel">
   <meta property="og:description" content="Airport Transfers, UK Tours & Europe from Oxford.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#0b1220">
+
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     html{scroll-behavior:smooth}
     body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:#0b1220}
@@ -22,7 +24,7 @@
     .section-head{display:flex;align-items:center;gap:.8rem;background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;padding:1rem 1.25rem;margin-bottom:1rem}
     .icon{width:26px;height:26px;flex:0 0 26px;color:#0b6b4e}
     .nav-link{font-weight:600}
-    .badge{display:inline-flex;align-items:center;gap:.45rem;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;border-radius:9999px;padding:.35rem .6rem;font-weight:700;font-size:.88rem}
+
     /* Buttons */
     .btn{display:inline-flex;align-items:center;gap:.5rem;justify-content:center;border-radius:12px;font-weight:700;padding:.85rem 1.1rem;transition:transform .04s}
     .btn:active{transform:translateY(1px)}
@@ -32,15 +34,18 @@
     .btn-stripe{background:#635BFF;color:#fff}
     .btn-paypal{background:#003087;color:#fff}
     .brand-ico{width:20px;height:20px;display:inline-block}
-    /* Payment badges row */
-    .pill{display:inline-flex;align-items:center;gap:.5rem;border-radius:9999px;padding:.45rem .7rem;font-weight:700;font-size:.9rem;color:#fff}
-    .pill-apple{background:#000}
-    .pill-google{background:#1a73e8}
-    .pill-stripe{background:#635BFF}
-    .pill-paypal{background:#003087}
-    /* Map height (mobile & desktop) */
+
+    /* Informational payment badges */
+    .pill{display:inline-flex;align-items:center;gap:.4rem;border-radius:9999px;padding:.35rem .7rem;font-weight:700;font-size:.8rem}
+    .pill-apple{background:#000;color:#fff}
+    .pill-google{background:#1A73E8;color:#fff}
+    .pill-stripe{background:#635BFF;color:#fff}
+    .pill-paypal{background:#003087;color:#fff}
+
+    /* Map sizing */
+    #mapCard { height: auto; }
     #map{height:420px;width:100%}
-    @media (min-width:768px){ #map{height:560px} }
+    @media (min-width:768px){ #map{height:100%} }
   </style>
 </head>
 <body class="bg-white">
@@ -67,29 +72,38 @@
     </div>
   </header>
 
-  <!-- Hero (no duplication of licensing copy) -->
+  <!-- Hero -->
   <section id="top" class="bg-[linear-gradient(120deg,#0b1220,_#0b6b4e)] text-white">
     <div class="container px-4 py-12 md:py-16 grid md:grid-cols-2 gap-10 items-center">
+      <!-- Left -->
       <div>
-        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Airport Transfers, UK Tours & Europe</h1>
-        <p class="text-lg mt-4 opacity-90">Oxford-based transfers in Mercedes E-Class & V-Class. Licensed & insured drivers. 20+ years’ professional experience.</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
+          Welcome to Oxford Executive Travel
+        </h1>
+        <p class="text-lg mt-4 opacity-90">
+          Executive private hire from Oxford — airport transfers, UK tours, Europe long-distance and same-day courier.
+          Mercedes E-Class & V-Class with licensed, insured drivers.
+        </p>
+
         <div class="mt-6 flex flex-wrap gap-3">
           <a class="btn btn-primary" href="#booking">Book / Get a Quote</a>
-          <a class="btn btn-wa" href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote." target="_blank" rel="noopener" aria-label="WhatsApp — fast reply">
-            <!-- Official-style WhatsApp glyph -->
-            <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.42c-.27-.14-1.58-.78-1.83-.87-.25-.09-.43-.14-.62.14-.18.27-.71.87-.87 1.05-.16.18-.32.2-.58.07-.27-.14-1.14-.42-2.18-1.3-.81-.71-1.35-1.58-1.51-1.85-.16-.27-.02-.41.12-.54.12-.12.27-.32.4-.47.13-.16.18-.27.28-.45.09-.18.05-.34-.02-.47-.07-.13-.63-1.46-.86-2-.22-.51-.44-.45-.63-.46l-.54-.01c-.19 0-.5.06-.76.35-.26.28-1.01.96-1.01 2.34 0 1.38 1.03 2.7 1.18 2.89.14.18 1.99 3.11 4.81 4.36.67.3 1.2.47 1.6.61.67.22 1.29.19 1.77.11.54-.08 1.6-.67 1.83-1.29.23-.62.23-1.19.15-1.29-.07-.11-.25-.17-.52-.3z"/><path d="M27.6 4.39A13.43 13.43 0 0 0 16.06.44C7.91.44 1.28 7.08 1.28 15.22c0 2.38.62 4.69 1.8 6.74L.4 31.56l9.77-2.52a13.51 13.51 0 0 0 5.89 1.36h.02c8.14 0 14.78-6.64 14.78-14.78 0-3.96-1.54-7.68-4.27-10.43zM16.08 28.5h-.01a11.7 11.7 0 0 1-5.8-1.56l-.42-.25-5.8 1.5 1.55-5.64-.26-.43a11.7 11.7 0 1 1 10.74 6.38z"/></svg>
+          <a class="btn btn-wa"
+             href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I%27d%20like%20a%20quote."
+             target="_blank" rel="noopener" aria-label="WhatsApp fast reply">
+            <img class="brand-ico" src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="" aria-hidden="true">
             Fast reply
           </a>
         </div>
       </div>
 
+      <!-- Right -->
       <div class="card p-5 bg-white text-slate-900">
         <h3 class="text-xl font-bold mb-3">How We Can Help</h3>
         <ul class="space-y-2 text-sm">
           <li><b>Airport Transfers:</b> Heathrow, Gatwick, Luton, Stansted, London City, Birmingham, Bristol & Eurostar.</li>
           <li><b>UK Tours:</b> Cotswolds, Oxford colleges, Blenheim, Bath, Stonehenge, Lake District, Snowdonia, York & Scotland.</li>
           <li><b>Europe & Long-Distance:</b> Paris, Brussels, Amsterdam and beyond — Eurotunnel or ferry.</li>
-          <li><b>Courier & Luggage:</b> Same-day delivery, delayed bags, documents — proof of delivery.</li>
+          <li><b>Courier & Luggage:</b> Same-day delivery, delayed bags, documents, proof of delivery.</li>
           <li><b>Clear Quotes:</b> Written confirmation before travel.</li>
         </ul>
       </div>
@@ -109,7 +123,7 @@
     <div class="grid md:grid-cols-3 gap-6">
       <div class="card p-5"><h3 class="font-bold text-lg mb-2">Meet & Greet</h3><p class="text-sm">Flight tracking, terminal pickup, and help with luggage as standard.</p></div>
       <div class="card p-5"><h3 class="font-bold text-lg mb-2">Business & Family</h3><p class="text-sm">Quiet, comfortable vehicles. Child seats available on request.</p></div>
-      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Space for Luggage</h3><p class="text-sm">Ideal for families, golf or ski trips, and longer journeys.</p></div>
+      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Space for Luggage</h3><p class="text-sm">Great for families and longer journeys; space for cases or equipment.</p></div>
     </div>
   </section>
 
@@ -132,7 +146,7 @@
     </div>
   </section>
 
-  <!-- Europe & Long-Distance -->
+  <!-- Europe -->
   <section id="europe" class="container px-4 py-10">
     <div class="section-head">
       <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M3 16l2-6 3-2h6l3 2 2 6M6 16v2m12-2v2M7 16h10M3 16h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -149,7 +163,7 @@
     </div>
   </section>
 
-  <!-- Same-Day Courier & Luggage -->
+  <!-- Courier -->
   <section id="courier" class="bg-gray-50">
     <div class="container px-4 py-10">
       <div class="section-head">
@@ -194,7 +208,9 @@
             </div>
 
             <div id="estimateRow" class="hidden">
-              <span class="badge" id="estimateBadge">Estimating…</span>
+              <span class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full px-3 py-1 text-sm font-semibold" id="estimateBadge">
+                Estimating…
+              </span>
             </div>
 
             <div class="grid md:grid-cols-2 gap-4">
@@ -227,64 +243,62 @@
             <div class="flex flex-wrap items-center gap-3 pt-2">
               <button type="submit" class="btn btn-primary">Send via Email</button>
 
-              <!-- WhatsApp -->
               <a class="btn btn-wa"
-                 href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote."
+                 href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I%27d%20like%20a%20quote."
                  target="_blank" rel="noopener">
-                <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.42c-.27-.14-1.58-.78-1.83-.87-.25-.09-.43-.14-.62.14-.18.27-.71.87-.87 1.05-.16.18-.32.2-.58.07-.27-.14-1.14-.42-2.18-1.3-.81-.71-1.35-1.58-1.51-1.85-.16-.27-.02-.41.12-.54.12-.12.27-.32.4-.47.13-.16.18-.27.28-.45.09-.18.05-.34-.02-.47-.07-.13-.63-1.46-.86-2-.22-.51-.44-.45-.63-.46l-.54-.01c-.19 0-.5.06-.76.35-.26.28-1.01.96-1.01 2.34 0 1.38 1.03 2.7 1.18 2.89.14.18 1.99 3.11 4.81 4.36.67.3 1.2.47 1.6.61.67.22 1.29.19 1.77.11.54-.08 1.6-.67 1.83-1.29.23-.62.23-1.19.15-1.29-.07-.11-.25-.17-.52-.3z"/><path d="M27.6 4.39A13.43 13.43 0 0 0 16.06.44C7.91.44 1.28 7.08 1.28 15.22c0 2.38.62 4.69 1.8 6.74L.4 31.56l9.77-2.52a13.51 13.51 0 0 0 5.89 1.36h.02c8.14 0 14.78-6.64 14.78-14.78 0-3.96-1.54-7.68-4.27-10.43zM16.08 28.5h-.01a11.7 11.7 0 0 1-5.8-1.56l-.42-.25-5.8 1.5 1.55-5.64-.26-.43a11.7 11.7 0 1 1 10.74 6.38z"/></svg>
+                <img class="brand-ico" src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="" aria-hidden="true">
                 Fast reply
               </a>
 
-              <!-- Stripe -->
               <a class="btn btn-stripe" href="https://buy.stripe.com/28E00l4K67Yf38r9BucQU01" target="_blank" rel="noopener">
+                <img class="brand-ico" src="https://cdn.simpleicons.org/stripe/ffffff" alt="" aria-hidden="true">
                 Pay with Card (Stripe)
               </a>
 
-              <!-- PayPal -->
               <a class="btn btn-paypal" href="https://paypal.me/IsrarOCC" target="_blank" rel="noopener">
-                Pay with PayPal
+                <img class="brand-ico" src="https://cdn.simpleicons.org/paypal/ffffff" alt="" aria-hidden="true">
+                PayPal
               </a>
 
-              <!-- Pay in person -->
-              <span class="border border-slate-300 rounded-full px-3 py-2 text-sm text-slate-700 bg-white">
-                or pay in person (cash/card terminal)
+              <span class="pill border border-dashed text-slate-600" style="border-color:#cbd5e1;background:#fff">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M3 6h18v12H3zM3 10h18" stroke="#64748B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                pay in person (cash/card terminal)
               </span>
             </div>
 
-            <!-- Payment method badges (informational) -->
+            <!-- Brand-accurate payment badges -->
             <div class="mt-3 flex flex-wrap gap-2" aria-label="Payment methods supported">
               <span class="pill pill-apple" title="Apple Pay via Stripe">
-                <!-- Apple logo -->
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.448 2.21-1.177 3.01-.75.82-2.03 1.45-3.1 1.38-.12-1.09.48-2.25 1.18-2.98.78-.85 2.12-1.48 3.1-1.41zM20.99 17.11c-.62 1.45-.91 2.1-1.71 3.39-1.11 1.71-2.67 3.86-4.6 3.88-1.08.02-1.82-.71-3.18-.71-1.37 0-2.16.7-3.23.73-1.95.04-3.45-1.84-4.57-3.54C1.2 18.05.02 14.09 1.81 11.44c1.01-1.53 2.66-2.48 4.51-2.51 1.08-.03 2.1.76 3.19.76 1.08 0 1.86-.76 3.14-.73 1.49.03 2.87.8 3.68 2.04-3.24 1.77-2.72 6.41.66 7.11z"/></svg>
-                Pay
+                <img class="brand-ico" src="https://cdn.simpleicons.org/apple/ffffff" alt="" aria-hidden="true">Apple&nbsp;Pay
               </span>
               <span class="pill pill-google" title="Google Pay via Stripe">
-                <!-- G mark -->
-                <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12.24 10.29v3.53h4.98c-.2 1.28-1.5 3.76-4.98 3.76-3 0-5.44-2.48-5.44-5.54 0-3.06 2.44-5.54 5.44-5.54 1.71 0 2.86.73 3.52 1.36l2.4-2.31C16.75 3.93 14.72 3 12.24 3 7.46 3 3.56 6.9 3.56 11.68s3.9 8.68 8.68 8.68c5 0 8.27-3.5 8.27-8.43 0-.57-.06-1-.14-1.64H12.24z"/></svg>
-                Pay
+                <img class="brand-ico" src="https://cdn.simpleicons.org/googlepay/ffffff" alt="" aria-hidden="true">Google&nbsp;Pay
               </span>
               <span class="pill pill-stripe" title="Cards via Stripe">Cards</span>
               <span class="pill pill-paypal" title="PayPal">PayPal</span>
             </div>
-
-            <p class="text-xs text-gray-500 mt-2">Apple Pay / Google Pay show automatically on Stripe Checkout when supported by your device/browser.</p>
+            <p class="text-xs text-gray-500 mt-1">
+              Apple Pay / Google Pay appear automatically on Stripe Checkout when supported by your device & browser.
+            </p>
 
             <p class="text-xs text-gray-500">Estimates are guides only. You’ll receive a written confirmation with the fixed quote.</p>
           </div>
         </form>
 
-        <!-- Map -->
-        <div class="card p-0 md:col-span-2 overflow-hidden rounded-xl">
-          <div id="map"></div>
+        <!-- Map (fills card height on desktop) -->
+        <div class="card p-0 md:col-span-2 overflow-hidden rounded-xl" id="mapCard">
+          <div id="map" class="h-full w-full"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PRICING CARDS -->
-  <section class="container px-4 pb-10">
+  <!-- Pricing -->
+  <section class="container px-4 py-8 grid gap-6">
     <!-- Airports -->
-    <div class="card p-5 mb-6">
+    <div class="card p-5">
       <h3 class="text-xl font-bold mb-3">Airport Transfers (from Oxford)</h3>
       <ul class="grid sm:grid-cols-2 gap-3 text-sm">
         <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
@@ -304,12 +318,12 @@
         </li>
       </ul>
       <p class="mt-3 text-xs text-slate-500">
-        Prices shown for Mercedes E-Class (1–4). V-Class (up to 7) quoted on request. Meet & Greet included.
+        Prices shown for Mercedes E-Class (1–4). V-Class/Vito (up to 7) quoted on request. Meet & Greet included.
       </p>
     </div>
 
-    <!-- UK Destinations -->
-    <div class="card p-5 mb-6">
+    <!-- Popular UK Destinations -->
+    <div class="card p-5">
       <h3 class="text-xl font-bold mb-3">Popular UK Destinations</h3>
       <ul class="grid sm:grid-cols-2 gap-3 text-sm">
         <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
@@ -325,18 +339,22 @@
           <span>Oxford → York</span><span class="font-semibold">from £380</span>
         </li>
       </ul>
-      <p class="mt-3 text-xs text-slate-500">Guide prices vary by vehicle size, time/day, waiting and exact postcodes.</p>
+      <p class="mt-3 text-xs text-slate-500">
+        Prices vary by vehicle size, time and day of travel, exact pickup/drop-off and any waiting time.
+      </p>
     </div>
 
-    <!-- Europe & Long-Distance -->
-    <div class="card p-5 mb-6">
+    <!-- Europe -->
+    <div class="card p-5">
       <h3 class="text-xl font-bold mb-3">Europe & Long-Distance</h3>
       <ul class="grid sm:grid-cols-2 gap-3 text-sm">
         <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
           <span>European journeys</span><span class="font-semibold">from £1,200</span>
         </li>
       </ul>
-      <p class="mt-3 text-xs text-slate-500">Eurotunnel or ferry to suit your schedule. Multi-stop and overnights available.</p>
+      <p class="mt-3 text-xs text-slate-500">
+        Eurotunnel or ferry to suit your schedule. Multi-stop and overnights available on request.
+      </p>
     </div>
 
     <!-- Courier -->
@@ -347,7 +365,9 @@
           <span>Express point-to-point</span><span class="font-semibold">from £120</span>
         </li>
       </ul>
-      <p class="mt-3 text-xs text-slate-500">Tracked & signed-for deliveries. Airport delayed-bag collection available.</p>
+      <p class="mt-3 text-xs text-slate-500">
+        Tracked & signed-for deliveries. Airport delayed-bag collection available.
+      </p>
     </div>
   </section>
 
@@ -359,101 +379,122 @@
     </div>
     <p>Phone: <a class="underline" href="tel:+447344145197">+44&nbsp;7344&nbsp;145197</a></p>
     <p>Email: <a class="underline" href="mailto:info@oxfordexecutivetravel.co.uk">info@oxfordexecutivetravel.co.uk</a> &nbsp;|&nbsp;
-      <a class="underline" href="mailto:bookings@oxfordexecutivetravel.co.uk">bookings@oxfordexecutivetravel.co.uk</a></p>
-    <p><a class="underline" href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote." target="_blank" rel="noopener">WhatsApp Chat — Fast reply</a></p>
+      <a class="underline" href="mailto:bookings@oxfordexecutivetravel.co.uk">bookings@oxfordexecutivetravel.co.uk</a> &nbsp;|&nbsp;
+      <a class="underline" href="https://wa.me/447344145197" target="_blank" rel="noopener">WhatsApp Chat — Fast reply</a>
+    </p>
+    <p class="text-xs text-slate-500 mt-4">© <span id="year"></span> Oxford Executive Travel • Licensed & Insured</p>
   </section>
-
-  <footer class="text-center py-6 border-t">
-    <p>© <span id="year"></span> Oxford Executive Travel • Licensed & Insured</p>
-  </footer>
-
-  <!-- Floating WhatsApp -->
-  <a href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote."
-     target="_blank" rel="noopener"
-     class="fixed bottom-5 right-5 flex items-center gap-2 bg-[#25D366] text-white font-semibold rounded-full shadow-lg px-4 py-3"
-     aria-label="Chat on WhatsApp">
-    <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.42c-.27-.14-1.58-.78-1.83-.87-.25-.09-.43-.14-.62.14-.18.27-.71.87-.87 1.05-.16.18-.32.2-.58.07-.27-.14-1.14-.42-2.18-1.3-.81-.71-1.35-1.58-1.51-1.85-.16-.27-.02-.41.12-.54.12-.12.27-.32.4-.47.13-.16.18-.27.28-.45.09-.18.05-.34-.02-.47-.07-.13-.63-1.46-.86-2-.22-.51-.44-.45-.63-.46l-.54-.01c-.19 0-.5.06-.76.35-.26.28-1.01.96-1.01 2.34 0 1.38 1.03 2.7 1.18 2.89.14.18 1.99 3.11 4.81 4.36.67.3 1.2.47 1.6.61.67.22 1.29.19 1.77.11.54-.08 1.6-.67 1.83-1.29.23-.62.23-1.19.15-1.29-.07-.11-.25-.17-.52-.3z"/><path d="M27.6 4.39A13.43 13.43 0 0 0 16.06.44C7.91.44 1.28 7.08 1.28 15.22c0 2.38.62 4.69 1.8 6.74L.4 31.56l9.77-2.52a13.51 13.51 0 0 0 5.89 1.36h.02c8.14 0 14.78-6.64 14.78-14.78 0-3.96-1.54-7.68-4.27-10.43z"/></svg>
-    <span class="hidden sm:inline">Chat for a fast reply</span>
-  </a>
 
   <!-- Scripts -->
   <script>
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Email composer (mailto)
-    document.getElementById('bookingForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const v = id => document.getElementById(id)?.value || '';
-      const subject = encodeURIComponent('Booking request from website');
-      const body = encodeURIComponent(
-`Pickup: ${v('pickup')}
-Drop-off: ${v('dropoff')}
-Date/Time: ${v('date')} ${v('time')}
-Passengers: ${v('pax')}   Luggage: ${v('bags')}
-Vehicle: ${v('vehicle')}
+    // Equalize map card height to booking form height (desktop)
+    function setMapHeightToForm() {
+      const form = document.getElementById('bookingForm');
+      const mapCard = document.getElementById('mapCard');
+      if (!form || !mapCard) return;
+      if (window.innerWidth >= 768) {
+        mapCard.style.height = form.offsetHeight + 'px';
+      } else {
+        mapCard.style.height = 'auto';
+      }
+    }
+    window.addEventListener('resize', setMapHeightToForm);
 
-Name: ${v('name')}
-Phone: ${v('phone')}
-Email: ${v('email')}
+    // Google Maps + Places
+    let map, pickupAutocomplete, dropoffAutocomplete, matrix;
 
-Notes: ${v('notes')}
-(Shown estimate was a guide only.)`
-      );
-      window.location.href = `mailto:bookings@oxfordexecutivetravel.co.uk?subject=${subject}&body=${body}`;
-    });
-
-    // Google Maps + Places + Distance Matrix
-    let map, pickupPlace, dropoffPlace;
     function initMap() {
-      map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 51.7520, lng: -1.2577 }, zoom: 12,
-        mapTypeControl: false, streetViewControl: false
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 51.7520, lng: -1.2577 }, // Oxford
+        zoom: 11,
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: true,
       });
-      setupAutocomplete('pickup', p => { pickupPlace = p; tryEstimate(); });
-      setupAutocomplete('dropoff', p => { dropoffPlace = p; tryEstimate(); });
+
+      pickupAutocomplete = new google.maps.places.Autocomplete(
+        document.getElementById('pickup'),
+        { types: ['geocode'] }
+      );
+      dropoffAutocomplete = new google.maps.places.Autocomplete(
+        document.getElementById('dropoff'),
+        { types: ['geocode'] }
+      );
+
+      pickupAutocomplete.addListener('place_changed', () => {
+        const place = pickupAutocomplete.getPlace();
+        document.getElementById('pickup_place_id').value = place.place_id || '';
+        tryEstimate();
+      });
+      dropoffAutocomplete.addListener('place_changed', () => {
+        const place = dropoffAutocomplete.getPlace();
+        document.getElementById('dropoff_place_id').value = place.place_id || '';
+        tryEstimate();
+      });
+
+      matrix = new google.maps.DistanceMatrixService();
+      setMapHeightToForm();
     }
-    function setupAutocomplete(id, onPicked) {
-      const input = document.getElementById(id);
-      const ac = new google.maps.places.Autocomplete(input, {
-        fields: ['place_id','formatted_address','name','geometry'],
-      });
-      ac.addListener('place_changed', () => {
-        const place = ac.getPlace();
-        const hidden = document.getElementById(id + '_place_id');
-        if (hidden && place?.place_id) hidden.value = place.place_id;
-        if (place?.formatted_address) input.value = place.formatted_address;
-        if (place?.geometry?.location) { map.panTo(place.geometry.location); map.setZoom(13); }
-        if (onPicked) onPicked(place);
-      });
-    }
+
     function tryEstimate() {
+      const from = document.getElementById('pickup').value.trim();
+      const to   = document.getElementById('dropoff').value.trim();
       const badge = document.getElementById('estimateBadge');
-      const row = document.getElementById('estimateRow');
-      if (!pickupPlace?.place_id || !dropoffPlace?.place_id) return;
+      const row   = document.getElementById('estimateRow');
+
+      if (!from || !to) { row.classList.add('hidden'); return; }
       row.classList.remove('hidden');
       badge.textContent = 'Estimating…';
-      const svc = new google.maps.DistanceMatrixService();
-      svc.getDistanceMatrix(
-        {
-          origins: [{placeId: pickupPlace.place_id}],
-          destinations: [{placeId: dropoffPlace.place_id}],
-          travelMode: google.maps.TravelMode.DRIVING,
-          unitSystem: google.maps.UnitSystem.METRIC,
-        },
-        (res, status) => {
-          if (status !== 'OK' || !res?.rows?.[0]?.elements?.[0]) { badge.textContent = 'Estimate unavailable'; return; }
-          const el = res.rows[0].elements[0];
-          if (el.status !== 'OK') { badge.textContent = 'Estimate unavailable'; return; }
-          const km = el.distance.value / 1000;
-          const base = 45, perKm = 1.8, minFare = 60;
-          const guide = Math.max(minFare, Math.round((base + km * perKm) / 5) * 5);
-          badge.textContent = `Guide price: ~£${guide} (distance ${km.toFixed(1)} km)`;
+
+      matrix.getDistanceMatrix({
+        origins: [from],
+        destinations: [to],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC
+      }, (res, status) => {
+        if (status !== 'OK') {
+          badge.textContent = 'Estimate unavailable';
+          setMapHeightToForm();
+          return;
         }
-      );
+        const elem = res.rows[0]?.elements[0];
+        if (!elem || elem.status !== 'OK') {
+          badge.textContent = 'Estimate unavailable';
+          setMapHeightToForm();
+          return;
+        }
+        const km = elem.distance.value / 1000;
+        const mins = Math.round(elem.duration.value / 60);
+
+        // Very simple guide estimate (you can tune these)
+        const base = 25;
+        const perKm = 1.6; // guide only
+        const guide = Math.round(base + perKm * km);
+
+        badge.textContent = `~£${guide} • ${km.toFixed(1)} km • ${mins} mins (guide)`;
+        setMapHeightToForm();
+      });
     }
+
+    // Email submit (prefilled mailto)
+    document.getElementById('bookingForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const get = id => document.getElementById(id).value.trim();
+
+      const subject = encodeURIComponent(`Quote request — ${get('pickup')} → ${get('dropoff')} (${get('date')} ${get('time')})`);
+      const body = encodeURIComponent(
+        `Pickup: ${get('pickup')}\nDrop-off: ${get('dropoff')}\nDate: ${get('date')}  Time: ${get('time')}\nPassengers: ${get('pax')}  Luggage: ${get('bags')}\nVehicle: ${get('vehicle')}\n\nName: ${get('name')}\nPhone/WhatsApp: ${get('phone')}\nEmail: ${get('email')}\n\nNotes: ${get('notes')}\n\nSent from website`
+      );
+
+      // Primary inbox below; edit if you prefer bookings@
+      window.location.href = `mailto:bookings@oxfordexecutivetravel.co.uk?subject=${subject}&body=${body}`;
+    });
   </script>
 
-  <!-- Google Maps API (your restricted key) -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZGBxqIbQwoZOpm0OEScJEuLJxkyIPqyQ&libraries=places&callback=initMap" async defer></script>
+  <!-- Google Maps JS (replace key if not already injected by Cloudflare) -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZGBxqIbQwoZOpm0OEScJEuLJxkyIPqyQ&libraries=places&callback=initMap"></script>
 </body>
 </html>
