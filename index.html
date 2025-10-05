@@ -374,7 +374,7 @@
   <!-- Contact -->
   <section id="contact" class="container px-4 py-10">
     <div class="section-head">
-      <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M22 16.92V19a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 5.18 A2 2 0 0 1 5 3h2.09A2 2 0 0 1 9 4.72l.57 2.26a2 2 0 0 1-.45 1.95l-1 1a16 16 0 0 0 7.88 7.88l1-1a2 2 0 0 1 1.95-.45L19.28 15A2 2 0 0 1 21 16.92Z" stroke="currentColor" stroke-width="1.6"/><path d="M4 4l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M22 16.92V19a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 5.18 2 2 0 0 1 5 3h2.09A2 2 0 0 1 9 4.72l.57 2.26a2 2 0 0 1-.45 1.95l-1 1a16 16 0 0 0 7.88 7.88l1-1a2 2 0 0 1 1.95-.45L19.28 15A2 2 0 0 1 21 16.92Z" stroke="currentColor" stroke-width="1.6"/><path d="M4 4l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div><h2 class="text-3xl font-extrabold m-0">Contact</h2></div>
     </div>
     <p>Phone: <a class="underline" href="tel:+447344145197">+44&nbsp;7344&nbsp;145197</a></p>
@@ -405,7 +405,6 @@
 
     // Google Maps + Places
     let map, pickupAutocomplete, dropoffAutocomplete, matrix;
-    let lastEstimate = null; // <-- CHANGED: store estimate for email
 
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
@@ -440,18 +439,13 @@
       setMapHeightToForm();
     }
 
-    // <-- CHANGED: capture estimate details for email
     function tryEstimate() {
       const from = document.getElementById('pickup').value.trim();
       const to   = document.getElementById('dropoff').value.trim();
       const badge = document.getElementById('estimateBadge');
       const row   = document.getElementById('estimateRow');
 
-      if (!from || !to) { 
-        row.classList.add('hidden'); 
-        lastEstimate = null;
-        return; 
-      }
+      if (!from || !to) { row.classList.add('hidden'); return; }
       row.classList.remove('hidden');
       badge.textContent = 'Estimating…';
 
@@ -463,14 +457,12 @@
       }, (res, status) => {
         if (status !== 'OK') {
           badge.textContent = 'Estimate unavailable';
-          lastEstimate = null;
           setMapHeightToForm();
           return;
         }
         const elem = res.rows[0]?.elements[0];
         if (!elem || elem.status !== 'OK') {
           badge.textContent = 'Estimate unavailable';
-          lastEstimate = null;
           setMapHeightToForm();
           return;
         }
@@ -482,68 +474,23 @@
         const perKm = 1.6; // guide only
         const guide = Math.round(base + perKm * km);
 
-        lastEstimate = { km: Number(km.toFixed(1)), mins, guide }; // save for email
         badge.textContent = `~£${guide} • ${km.toFixed(1)} km • ${mins} mins (guide)`;
         setMapHeightToForm();
       });
     }
 
-    // Helper to make a short reference like OET-20251005-1830-4821
-    function makeRef() {
-      const d = new Date();
-      const pad = n => String(n).padStart(2,'0');
-      const date = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
-      const time = `${pad(d.getHours())}${pad(d.getMinutes())}`;
-      const rnd = Math.floor(1000 + Math.random()*9000);
-      return `OET-${date}-${time}-${rnd}`;
-    }
-
-    // <-- CHANGED: improved mailto with Ref, CC to customer, and estimate in the body
+    // Email submit (prefilled mailto)
     document.getElementById('bookingForm').addEventListener('submit', (e) => {
       e.preventDefault();
       const get = id => document.getElementById(id).value.trim();
 
-      // Minimal guard
-      const required = ['pickup','dropoff','date','time','pax','name','phone','email'];
-      for (const k of required) {
-        if (!get(k)) {
-          alert(`Please complete: ${k}`);
-          return;
-        }
-      }
+      const subject = encodeURIComponent(`Quote request — ${get('pickup')} → ${get('dropoff')} (${get('date')} ${get('time')})`);
+      const body = encodeURIComponent(
+        `Pickup: ${get('pickup')}\nDrop-off: ${get('dropoff')}\nDate: ${get('date')}  Time: ${get('time')}\nPassengers: ${get('pax')}  Luggage: ${get('bags')}\nVehicle: ${get('vehicle')}\n\nName: ${get('name')}\nPhone/WhatsApp: ${get('phone')}\nEmail: ${get('email')}\n\nNotes: ${get('notes')}\n\nSent from website`
+      );
 
-      const ref = makeRef();
-      const subject = `Quote request [${ref}] — ${get('pickup')} → ${get('dropoff')} (${get('date')} ${get('time')})`;
-
-      // Optional estimate text
-      const estimateLine = lastEstimate
-        ? `\nEstimate (guide): ~£${lastEstimate.guide} • ${lastEstimate.km} km • ${lastEstimate.mins} mins\n`
-        : '';
-
-      const body =
-`Reference: ${ref}
-Pickup: ${get('pickup')}
-Drop-off: ${get('dropoff')}
-Date: ${get('date')}   Time: ${get('time')}
-Passengers: ${get('pax')}   Luggage: ${get('bags')}
-Vehicle: ${get('vehicle')}
-
-Name: ${get('name')}
-Phone/WhatsApp: ${get('phone')}
-Email: ${get('email')}
-
-${estimateLine}Notes:
-${get('notes') || '-'}
-
--- 
-Sent from oxfordexecutivetravel.co.uk`;
-
-      const to = 'bookings@oxfordexecutivetravel.co.uk';
-      const cc = get('email'); // customer gets a copy
-
-      // Build mailto
-      const url = `mailto:${encodeURIComponent(to)}?cc=${encodeURIComponent(cc)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = url;
+      // Primary inbox below; edit if you prefer bookings@
+      window.location.href = `mailto:bookings@oxfordexecutivetravel.co.uk?subject=${subject}&body=${body}`;
     });
   </script>
 
