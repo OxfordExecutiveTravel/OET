@@ -17,15 +17,24 @@
     body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:#0b1220}
     .container{max-width:1120px;margin:0 auto}
     .card{background:#fff;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;font-weight:700;padding:.85rem 1.1rem}
-    .btn-primary{background:#0b6b4e;color:#fff}
-    .btn-outline{border:1px solid #0b6b4e;color:#0b6b4e;background:#fff}
     .input{width:100%;border:1px solid #e5e7eb;border-radius:12px;padding:.85rem 1rem;outline:none}
     .input:focus{border-color:#0b6b4e;box-shadow:0 0 0 3px #0b6b4e22}
     .section-head{display:flex;align-items:center;gap:.8rem;background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;padding:1rem 1.25rem;margin-bottom:1rem}
     .icon{width:26px;height:26px;flex:0 0 26px;color:#0b6b4e}
     .nav-link{font-weight:600}
-    .badge{display:inline-flex;align-items:center;gap:.45rem;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;border-radius:9999px;padding:.35rem .6rem;font-weight:700;font-size:.88rem}
+
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;gap:.5rem;justify-content:center;border-radius:12px;font-weight:700;padding:.85rem 1.1rem;transition:transform .04s}
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{background:#0b6b4e;color:#fff}
+    .btn-outline{border:1px solid #0b6b4e;color:#0b6b4e;background:#fff}
+    .btn-wa{background:#25D366;color:#fff}              /* WhatsApp green */
+    .btn-stripe{background:#635BFF;color:#fff}          /* Stripe indigo */
+    .btn-paypal{background:#003087;color:#fff}          /* PayPal blue */
+    .btn-paypal svg:last-child{background:#F7BE00;border-radius:3px} /* yellow PP tile */
+
+    .pay-later{display:inline-flex;align-items:center;gap:.35rem;border:1px dashed #cbd5e1;border-radius:9999px;padding:.45rem .75rem;color:#334155;background:#fff}
+
     /* Map height (mobile & desktop) */
     #map{height:420px;width:100%}
     @media (min-width:768px){ #map{height:560px} }
@@ -60,12 +69,22 @@
     <div class="container px-4 py-12 md:py-16 grid md:grid-cols-2 gap-10 items-center">
       <div>
         <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Airport Transfers, UK Tours & Europe</h1>
-        <p class="text-lg mt-4 opacity-90">Oxford-based transfers in Mercedes E-Class & V-Class. <b>Licensed & Insured Drivers.</b> 20+ years’ professional experience.</p>
+        <p class="text-lg mt-4 opacity-90">
+          Oxford-based transfers in Mercedes E-Class & V-Class.
+          <b>Licensed & Insured Drivers.</b> 20+ years’ professional experience.
+        </p>
         <div class="mt-6 flex flex-wrap gap-3">
           <a class="btn btn-primary" href="#booking">Book / Get a Quote</a>
-          <a class="btn btn-outline" href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote." target="_blank" rel="noopener" aria-label="WhatsApp">
-            <svg class="w-5 h-5 mr-1" viewBox="0 0 24 24" fill="currentColor"><path d="M19.05 4.91A9.94 9.94 0 0 0 12.01 2C6.49 2 2 6.49 2 12.01c0 1.77.46 3.5 1.33 5.04L2 22l5.07-1.31a9.96 9.96 0 0 0 4.93 1.29h.01c5.52 0 10.01-4.49 10.01-10.01 0-2.67-1.04-5.18-2.97-7.06Z"/></svg>
-            WhatsApp — <span class="text-emerald-200 font-semibold">Fast reply</span>
+
+          <!-- WhatsApp – strong contrast & official icon -->
+          <a class="btn btn-wa" href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote."
+             target="_blank" rel="noopener" aria-label="WhatsApp fast reply">
+            <!-- WhatsApp icon (official glyph) -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-5 h-5" fill="currentColor" aria-hidden="true">
+              <path d="M19.11 17.67c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.25-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.09-.4-2.07-1.28-.77-.69-1.29-1.53-1.44-1.79-.15-.26-.02-.4.11-.52.11-.11.26-.31.38-.46.12-.15.17-.26.26-.44.09-.18.05-.33-.02-.46-.07-.12-.59-1.4-.8-1.92-.21-.49-.42-.43-.59-.44l-.5-.01c-.17 0-.46.06-.7.33-.24.26-.93.91-.93 2.22 0 1.31.97 2.54 1.1 2.71.12.18 1.91 2.91 4.63 4.09.64.28 1.15.45 1.54.57.65.2 1.24.18 1.69.11.52-.08 1.53-.62 1.74-1.22.21-.6.21-1.12.14-1.22-.06-.1-.23-.17-.49-.29z"/>
+              <path d="M27.99 14.66C27.99 8.89 23.1 4 17.33 4 11.56 4 6.67 8.89 6.67 14.66c0 2.33.77 4.48 2.09 6.22L8 28l7.29-1.91a10.6 10.6 0 0 0 2.04.2c5.77 0 10.66-4.89 10.66-10.66zM17.33 25.2c-.61 0-1.21-.08-1.78-.24l-.38-.11-4.26 1.11 1.14-4.14-.12-.4a8.91 8.91 0 1 1 5.4 3.78z"/>
+            </svg>
+            Fast reply
           </a>
         </div>
       </div>
@@ -96,7 +115,7 @@
     <div class="grid md:grid-cols-3 gap-6">
       <div class="card p-5"><h3 class="font-bold text-lg mb-2">Meet & Greet</h3><p class="text-sm">Flight tracking, terminal pickup, and help with luggage as standard.</p></div>
       <div class="card p-5"><h3 class="font-bold text-lg mb-2">Business & Family</h3><p class="text-sm">Quiet, comfortable vehicles. Child seats available on request.</p></div>
-      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Space for Luggage</h3><p class="text-sm">Ideal for families, golf or ski trips, and longer journeys.</p></div>
+      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Space for Luggage</h3><p class="text-sm">Great for families and longer journeys; space for cases or equipment.</p></div>
     </div>
   </section>
 
@@ -182,7 +201,7 @@
             </div>
 
             <div id="estimateRow" class="hidden">
-              <span class="badge" id="estimateBadge">
+              <span class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full px-3 py-1 text-sm font-semibold" id="estimateBadge">
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M10 3h4l1 18h-6L10 3Zm-7 9h7m7 0h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 Estimating…
               </span>
@@ -215,23 +234,52 @@
               <div><label class="block text-sm font-semibold mb-1">Notes</label><input id="notes" class="input" type="text" placeholder="Flight no., child seat, courier details, etc."></div>
             </div>
 
-            <div class="flex flex-wrap gap-3 pt-2">
+            <div class="flex flex-wrap items-center gap-3 pt-2">
               <button type="submit" class="btn btn-primary">Send via Email</button>
 
-              <a id="whatsBtn" class="btn btn-outline"
+              <!-- WhatsApp Fast reply (green, with icon) -->
+              <a class="btn btn-wa"
                  href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote."
-                 target="_blank" rel="noopener">Fast reply</a>
+                 target="_blank" rel="noopener">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-5 h-5" fill="currentColor" aria-hidden="true">
+                  <path d="M19.11 17.67c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.25-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.09-.4-2.07-1.28-.77-.69-1.29-1.53-1.44-1.79-.15-.26-.02-.4.11-.52.11-.11.26-.31.38-.46.12-.15.17-.26.26-.44.09-.18.05-.33-.02-.46-.07-.12-.59-1.4-.8-1.92-.21-.49-.42-.43-.59-.44l-.5-.01c-.17 0-.46.06-.7.33-.24.26-.93.91-.93 2.22 0 1.31.97 2.54 1.1 2.71.12.18 1.91 2.91 4.63 4.09.64.28 1.15.45 1.54.57.65.2 1.24.18 1.69.11.52-.08 1.53-.62 1.74-1.22.21-.6.21-1.12.14-1.22-.06-.1-.23-.17-.49-.29z"/>
+                  <path d="M27.99 14.66C27.99 8.89 23.1 4 17.33 4 11.56 4 6.67 8.89 6.67 14.66c0 2.33.77 4.48 2.09 6.22L8 28l7.29-1.91a10.6 10.6 0 0 0 2.04.2c5.77 0 10.66-4.89 10.66-10.66zM17.33 25.2c-.61 0-1.21-.08-1.78-.24l-.38-.11-4.26 1.11 1.14-4.14-.12-.4a8.91 8.91 0 1 1 5.4 3.78z"/>
+                </svg>
+                Fast reply
+              </a>
 
-              <a class="btn btn-outline" href="https://buy.stripe.com/28E00l4K67Yf38r9BucQU01" target="_blank" rel="noopener">Pay with Card (Stripe)</a>
-              <a class="btn btn-outline" href="https://paypal.me/IsrarOCC" target="_blank" rel="noopener">PayPal</a>
-              <span class="text-sm text-slate-500">or pay in person (cash/card terminal)</span>
+              <!-- Stripe (brand colour + icon) -->
+              <a class="btn btn-stripe" href="https://buy.stripe.com/28E00l4K67Yf38r9BucQU01" target="_blank" rel="noopener">
+                <!-- Stripe "s" -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" class="w-5 h-5" fill="currentColor" aria-hidden="true">
+                  <path d="M22.5 8.7c-1.3-.9-3.3-1.4-5.4-1.4-2.7 0-4.6 1.2-4.6 3 0 2.1 2.8 2.3 4.9 2.6 2.3.4 3.1.8 3.1 1.6 0 .9-1 1.4-2.5 1.4-1.7 0-3.3-.6-4.7-1.4v3.1c1.6.7 3.1 1 4.7 1 3.1 0 4.9-1.5 4.9-3.6 0-2.2-1.9-3-4.8-3.5-2.4-.4-3.2-.7-3.2-1.5 0-.6.7-1.2 2.3-1.2 1.6 0 3.1.5 4.3 1.1V8.7z"/>
+                </svg>
+                Pay with Card (Stripe)
+              </a>
+
+              <!-- PayPal (brand colour + double P icon) -->
+              <a class="btn btn-paypal" href="https://paypal.me/IsrarOCC" target="_blank" rel="noopener">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 20" class="w-6 h-5" aria-hidden="true">
+                  <path fill="#FFFFFF" d="M12.4 3.1h5.4c2.2 0 3.8 1.1 3.8 3.1 0 2.8-2.2 3.8-4.5 3.8h-2l-.5 2.9H11L12.4 3.1zm4.7 4.7c.7 0 1.4-.5 1.4-1.3 0-.6-.5-1-1.4-1h-1l-.4 2.3h1.4z"/>
+                  <path fill="#F7BE00" d="M30.4 4.1h4.6l-1.1 6.6h-4.6l1.1-6.6z"/>
+                </svg>
+                PayPal
+              </a>
+
+              <!-- Pay in person – boxed pill -->
+              <span class="pay-later">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                  <path d="M3 6h18v12H3zM3 10h18" stroke="#64748B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                pay in person (cash/card terminal)
+              </span>
             </div>
 
             <p class="text-xs text-gray-500">Estimates are guides only. You’ll receive a written confirmation with the fixed quote.</p>
           </div>
         </form>
 
-        <!-- Map (always visible, fixed height; stacks below on mobile) -->
+        <!-- Map -->
         <div class="card p-0 md:col-span-2 overflow-hidden rounded-xl">
           <div id="map"></div>
         </div>
@@ -248,7 +296,13 @@
     <p>Phone: <a class="underline" href="tel:+447344145197">+44&nbsp;7344&nbsp;145197</a></p>
     <p>Email: <a class="underline" href="mailto:info@oxfordexecutivetravel.co.uk">info@oxfordexecutivetravel.co.uk</a> &nbsp;|&nbsp;
       <a class="underline" href="mailto:bookings@oxfordexecutivetravel.co.uk">bookings@oxfordexecutivetravel.co.uk</a></p>
-    <p><a class="underline" href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote." target="_blank" rel="noopener">WhatsApp Chat — Fast reply</a></p>
+    <p>
+      <a class="underline" href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote." target="_blank" rel="noopener">
+        <!-- small WhatsApp glyph before text -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="inline w-4 h-4 -mt-0.5" fill="#25D366" aria-hidden="true"><path d="M19.11 17.67c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.25-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.09-.4-2.07-1.28-.77-.69-1.29-1.53-1.44-1.79-.15-.26-.02-.4.11-.52.11-.11.26-.31.38-.46.12-.15.17-.26.26-.44.09-.18.05-.33-.02-.46-.07-.12-.59-1.4-.8-1.92-.21-.49-.42-.43-.59-.44l-.5-.01c-.17 0-.46.06-.7.33-.24.26-.93.91-.93 2.22 0 1.31.97 2.54 1.1 2.71.12.18 1.91 2.91 4.63 4.09.64.28 1.15.45 1.54.57.65.2 1.24.18 1.69.11.52-.08 1.53-.62 1.74-1.22.21-.6.21-1.12.14-1.22-.06-.1-.23-.17-.49-.29z"/><path d="M27.99 14.66C27.99 8.89 23.1 4 17.33 4 11.56 4 6.67 8.89 6.67 14.66c0 2.33.77 4.48 2.09 6.22L8 28l7.29-1.91a10.6 10.6 0 0 0 2.04.2c5.77 0 10.66-4.89 10.66-10.66z"/></svg>
+        WhatsApp Chat — Fast reply
+      </a>
+    </p>
   </section>
 
   <footer class="text-center py-6 border-t">
@@ -260,7 +314,9 @@
      target="_blank" rel="noopener"
      class="fixed bottom-5 right-5 flex items-center gap-2 bg-[#25D366] text-white font-semibold rounded-full shadow-lg px-4 py-3"
      aria-label="Chat on WhatsApp">
-    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M19.05 4.91A9.94 9.94 0 0 0 12.01 2C6.49 2 2 6.49 2 12.01c0 1.77.46 3.5 1.33 5.04L2 22l5.07-1.31a9.96 9.96 0 0 0 4.93 1.29h.01c5.52 0 10.01-4.49 10.01-10.01 0-2.67-1.04-5.18-2.97-7.06Z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-6 h-6" fill="currentColor" aria-hidden="true">
+      <path d="M19.11 17.67c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.25-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.09-.4-2.07-1.28-.77-.69-1.29-1.53-1.44-1.79-.15-.26-.02-.4.11-.52.11-.11.26-.31.38-.46.12-.15.17-.26.26-.44.09-.18.05-.33-.02-.46-.07-.12-.59-1.4-.8-1.92-.21-.49-.42-.43-.59-.44l-.5-.01c-.17 0-.46.06-.7.33-.24.26-.93.91-.93 2.22 0 1.31.97 2.54 1.1 2.71.12.18 1.91 2.91 4.63 4.09.64.28 1.15.45 1.54.57.65.2 1.24.18 1.69.11.52-.08 1.53-.62 1.74-1.22.21-.6.21-1.12.14-1.22-.06-.1-.23-.17-.49-.29z"/><path d="M27.99 14.66C27.99 8.89 23.1 4 17.33 4 11.56 4 6.67 8.89 6.67 14.66c0 2.33.77 4.48 2.09 6.22L8 28l7.29-1.91a10.6 10.6 0 0 0 2.04.2c5.77 0 10.66-4.89 10.66-10.66z"/>
+    </svg>
     <span class="hidden sm:inline">Chat for a fast reply</span>
   </a>
 
@@ -341,7 +397,7 @@ Notes: ${v('notes')}
     }
   </script>
 
-  <!-- Google Maps API (replace key only if you changed it) -->
+  <!-- Google Maps API -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZGBxqIbQwoZOpm0OEScJEuLJxkyIPqyQ&libraries=places&callback=initMap" async defer></script>
 </body>
 </html>
