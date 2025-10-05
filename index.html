@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Oxford Executive Travel | Airport Transfers, UK Tours & Europe</title>
 
+  <!-- Meta / SEO -->
   <meta name="description" content="Oxford-based executive transfers in Mercedes E-Class & V-Class. Licensed & insured drivers with 20+ years’ experience. Airport transfers, UK tours, Europe long-distance, and same-day courier." />
   <link rel="canonical" href="https://oxfordexecutivetravel.co.uk/" />
   <meta property="og:title" content="Oxford Executive Travel" />
@@ -12,6 +13,11 @@
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#0b1220" />
 
+  <!-- Icons (add /favicon.png to repo root) -->
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+
+  <!-- Fonts / CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -36,9 +42,36 @@
     #map{height:420px;width:100%}
     @media (min-width:768px){ #map{height:560px} }
     .alert{background:#ecfdf5;border:1px solid #10b98133;color:#065f46}
-    /* Ensure Places autocomplete dropdown is visible above cards */
+    /* Ensure Places autocomplete dropdown is above cards */
     .pac-container{ z-index: 99999 !important; }
   </style>
+
+  <!-- LocalBusiness Schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Oxford Executive Travel",
+    "image": "https://oxfordexecutivetravel.co.uk/logo.png",
+    "url": "https://oxfordexecutivetravel.co.uk/",
+    "telephone": "+447344145197",
+    "priceRange": "££",
+    "areaServed": ["Oxford", "Cotswolds", "London", "UK", "Europe"],
+    "description": "Oxford-based executive transfers in Mercedes E-Class & V-Class. Airport transfers, UK tours, Europe long-distance and same-day courier.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Oxford",
+      "addressRegion": "Oxfordshire",
+      "addressCountry": "GB"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    }]
+  }
+  </script>
 </head>
 <body class="bg-white">
 
@@ -106,7 +139,7 @@
     <div class="grid md:grid-cols-3 gap-6">
       <div class="card p-5"><h3 class="font-bold text-lg mb-2">Meet & Greet</h3><p class="text-sm">Flight tracking, terminal pickup, and help with luggage as standard.</p></div>
       <div class="card p-5"><h3 class="font-bold text-lg mb-2">Business & Family</h3><p class="text-sm">Quiet, comfortable vehicles. Child seats available on request.</p></div>
-      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Space for Luggage</h3><p class="text-sm">Ideal for families and longer journeys; space for cases or equipment.</p></div>
+      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Space for Luggage</h3><p class="text-sm">Ideal for families and longer journeys; room for cases or equipment.</p></div>
     </div>
   </section>
 
@@ -220,7 +253,7 @@
     </div>
   </section>
 
-  <!-- Booking (email working) -->
+  <!-- Booking -->
   <section id="booking" class="bg-gray-50">
     <div class="container px-4 py-10">
       <div class="section-head">
@@ -242,7 +275,7 @@
           <input type="hidden" name="_subject" value="New Booking / Quote Request - Website">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://oet-44z.pages.dev/#thanks">
+          <input type="hidden" name="_next" value="https://oxfordexecutivetravel.co.uk/#thanks">
           <input type="text" name="_honey" style="display:none">
 
           <div class="grid gap-4">
@@ -300,7 +333,8 @@
                 <img class="brand-ico" src="https://cdn.simpleicons.org/stripe/ffffff" alt="" aria-hidden="true">
                 Pay with Card (Stripe)
               </a>
-              <!--PayPal -->
+
+              <!-- PayPal -->
               <a class="btn btn-paypal" href="https://paypal.me/IsrarOCC" target="_blank" rel="noopener">
                 <img class="brand-ico" src="https://cdn.simpleicons.org/paypal/ffffff" alt="" aria-hidden="true">
                 PayPal
