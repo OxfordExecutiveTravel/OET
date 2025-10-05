@@ -55,7 +55,8 @@ https://oxfordexecutivetravel.co.uk`
     const BOOKINGS_INBOX = "bookings@oxfordexecutivetravel.co.uk";
 
     const payload = {
-      personalizations: [{ to: [{ email }] }],
+      personalizations: [{ to: [{ email }], bcc: [{ email: "bookings@oxfordexecutivetravel.co.uk" }] }],
+
       from: { email: FROM_ADDRESS, name: "Oxford Executive Travel" },
       reply_to: { email: BOOKINGS_INBOX, name: "Oxford Executive Travel" },
       subject,
