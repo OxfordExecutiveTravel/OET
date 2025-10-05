@@ -479,22 +479,83 @@
       });
     }
 
-    // Email submit (prefilled mailto)
+    // Email submit (prefilled mailto) + background auto-ack (NO layout changes)
     document.getElementById('bookingForm').addEventListener('submit', (e) => {
       e.preventDefault();
       const get = id => document.getElementById(id).value.trim();
 
-      const subject = encodeURIComponent(`Quote request — ${get('pickup')} → ${get('dropoff')} (${get('date')} ${get('time')})`);
-      const body = encodeURIComponent(
-        `Pickup: ${get('pickup')}\nDrop-off: ${get('dropoff')}\nDate: ${get('date')}  Time: ${get('time')}\nPassengers: ${get('pax')}  Luggage: ${get('bags')}\nVehicle: ${get('vehicle')}\n\nName: ${get('name')}\nPhone/WhatsApp: ${get('phone')}\nEmail: ${get('email')}\n\nNotes: ${get('notes')}\n\nSent from website`
-      );
+      const subject = `Quote request — ${get('pickup')} → ${get('dropoff')} (${get('date')} ${get('time')})`;
+      const body =
+        `Pickup: ${get('pickup')}\n` +
+        `Drop-off: ${get('dropoff')}\n` +
+        `Date: ${get('date')}  Time: ${get('time')}\n` +
+        `Passengers: ${get('pax')}  Luggage: ${get('bags')}\n` +
+        `Vehicle: ${get('vehicle')}\n\n` +
+        `Name: ${get('name')}\n` +
+        `Phone/WhatsApp: ${get('phone')}\n` +
+        `Email: ${get('email')}\n\n` +
+        `Notes: ${get('notes')}\n\n` +
+        `Sent from website`;
 
-      // Primary inbox below; edit if you prefer bookings@
-      window.location.href = `mailto:bookings@oxfordexecutivetravel.co.uk?subject=${subject}&body=${body}`;
+      // Background auto-ack to customer (fire-and-forget)
+      const payload = {
+        name: get('name'),
+        email: get('email'),
+        phone: get('phone'),
+        pickup: get('pickup'),
+        dropoff: get('dropoff'),
+        date: get('date'),
+        time: get('time'),
+        pax: get('pax'),
+        bags: get('bags'),
+        vehicle: get('vehicle'),
+        notes: get('notes'),
+        ref: (function makeRef(){
+          const d = new Date(), p=n=>String(n).padStart(2,'0');
+          return `OET-${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}-${Math.floor(1000+Math.random()*9000)}`;
+        })()
+      };
+
+      const json = JSON.stringify(payload);
+      let sent = false;
+      if (navigator.sendBeacon) {
+        try { sent = navigator.sendBeacon('/api/ack', new Blob([json], {type: 'application/json'})); } catch (_) {}
+      }
+      if (!sent) {
+        fetch('/api/ack', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: json, keepalive: true }).catch(()=>{});
+      }
+
+      // Open email app as before
+      const mailto = `mailto:bookings@oxfordexecutivetravel.co.uk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
     });
   </script>
 
   <!-- Google Maps JS (replace key if not already injected by Cloudflare) -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZGBxqIbQwoZOpm0OEScJEuLJxkyIPqyQ&libraries=places&callback=initMap"></script>
+
+  <!-- Floating WhatsApp “Chat now” (overlay only, doesn’t affect layout) -->
+  <a href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I%27d%20like%20a%20quote."
+     class="wa-fab"
+     target="_blank" rel="noopener" aria-label="Chat now on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="22" height="22" aria-hidden="true">
+      <path fill="#25D366" d="M19.11 5.28A10.71 10.71 0 0 0 5.27 19.12L4 23.96l4.94-1.26A10.71 10.71 0 1 0 19.11 5.28Z"/>
+      <path fill="#fff" d="M24.6 20.53c-.35.99-1.71 1.81-2.8 2.05-.75.16-1.73.29-5.03-1.05-4.21-1.73-6.91-5.98-7.12-6.26-.2-.28-1.7-2.26-1.7-4.31 0-2.05 1.04-3.06 1.41-3.48.36-.43.78-.54 1.04-.54.26 0 .52.01.75.01.24 0 .56-.09.88.67.35.85 1.2 2.94 1.3 3.15.11.22.18.47.04.75-.14.28-.22.46-.44.71-.22.25-.46.56-.65.75-.22.22-.45.45-.19.88.27.43 1.21 1.98 2.6 3.21 1.79 1.6 3.29 2.1 3.72 2.33.43.22.69.19.95-.12.26-.31 1.09-1.27 1.38-1.71.29-.44.6-.36.99-.22.39.14 2.47 1.17 2.89 1.38.43.22.71.32.82.5.11.18.11 1.05-.24 2.04Z"/>
+    </svg>
+    <span class="wa-fab-text">Chat now</span>
+  </a>
+  <style>
+    .wa-fab{
+      position:fixed; right:16px; bottom:16px; z-index:60;
+      display:inline-flex; align-items:center; gap:10px;
+      background:#25D366; color:#fff; font-weight:800;
+      padding:12px 16px; border-radius:9999px;
+      box-shadow:0 10px 24px rgba(0,0,0,.18);
+    }
+    .wa-fab:hover{ filter:brightness(.95) }
+    .wa-fab-text{ font-size:14px; letter-spacing:.2px }
+    @media (max-width: 640px){ .wa-fab-text{ display:none } } /* icon-only on phones */
+  </style>
+
 </body>
 </html>
