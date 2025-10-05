@@ -28,14 +28,14 @@
     .btn:active{transform:translateY(1px)}
     .btn-primary{background:#0b6b4e;color:#fff}
     .btn-outline{border:1px solid #0b6b4e;color:#0b6b4e;background:#fff}
-    .btn-wa{background:#25D366;color:#fff}              /* WhatsApp green */
-    .btn-stripe{background:#635BFF;color:#fff}          /* Stripe indigo */
-    .btn-paypal{background:#003087;color:#fff}          /* PayPal blue */
-    .btn-paypal svg:last-child{background:#F7BE00;border-radius:3px} /* yellow PP tile */
+    .btn-wa{background:#25D366;color:#fff}
+    .btn-stripe{background:#635BFF;color:#fff}
+    .btn-paypal{background:#003087;color:#fff}
+    .brand-ico{width:20px;height:20px;display:inline-block}
 
     .pay-later{display:inline-flex;align-items:center;gap:.35rem;border:1px dashed #cbd5e1;border-radius:9999px;padding:.45rem .75rem;color:#334155;background:#fff}
 
-    /* Map height (mobile & desktop) */
+    /* Map height */
     #map{height:420px;width:100%}
     @media (min-width:768px){ #map{height:560px} }
   </style>
@@ -76,14 +76,10 @@
         <div class="mt-6 flex flex-wrap gap-3">
           <a class="btn btn-primary" href="#booking">Book / Get a Quote</a>
 
-          <!-- WhatsApp – strong contrast & official icon -->
+          <!-- WhatsApp – brand icon -->
           <a class="btn btn-wa" href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote."
              target="_blank" rel="noopener" aria-label="WhatsApp fast reply">
-            <!-- WhatsApp icon (official glyph) -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-5 h-5" fill="currentColor" aria-hidden="true">
-              <path d="M19.11 17.67c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.25-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.09-.4-2.07-1.28-.77-.69-1.29-1.53-1.44-1.79-.15-.26-.02-.4.11-.52.11-.11.26-.31.38-.46.12-.15.17-.26.26-.44.09-.18.05-.33-.02-.46-.07-.12-.59-1.4-.8-1.92-.21-.49-.42-.43-.59-.44l-.5-.01c-.17 0-.46.06-.7.33-.24.26-.93.91-.93 2.22 0 1.31.97 2.54 1.1 2.71.12.18 1.91 2.91 4.63 4.09.64.28 1.15.45 1.54.57.65.2 1.24.18 1.69.11.52-.08 1.53-.62 1.74-1.22.21-.6.21-1.12.14-1.22-.06-.1-.23-.17-.49-.29z"/>
-              <path d="M27.99 14.66C27.99 8.89 23.1 4 17.33 4 11.56 4 6.67 8.89 6.67 14.66c0 2.33.77 4.48 2.09 6.22L8 28l7.29-1.91a10.6 10.6 0 0 0 2.04.2c5.77 0 10.66-4.89 10.66-10.66zM17.33 25.2c-.61 0-1.21-.08-1.78-.24l-.38-.11-4.26 1.11 1.14-4.14-.12-.4a8.91 8.91 0 1 1 5.4 3.78z"/>
-            </svg>
+            <img class="brand-ico" src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="" aria-hidden="true">
             Fast reply
           </a>
         </div>
@@ -182,7 +178,6 @@
         <div><h2 class="text-3xl font-extrabold m-0">Book / Get a Quote</h2></div>
       </div>
 
-      <!-- On mobile, form then map (stack) -->
       <div class="grid md:grid-cols-5 gap-6">
         <!-- Form -->
         <form id="bookingForm" class="card p-5 md:col-span-3">
@@ -202,7 +197,6 @@
 
             <div id="estimateRow" class="hidden">
               <span class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full px-3 py-1 text-sm font-semibold" id="estimateBadge">
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M10 3h4l1 18h-6L10 3Zm-7 9h7m7 0h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 Estimating…
               </span>
             </div>
@@ -237,38 +231,29 @@
             <div class="flex flex-wrap items-center gap-3 pt-2">
               <button type="submit" class="btn btn-primary">Send via Email</button>
 
-              <!-- WhatsApp Fast reply (green, with icon) -->
+              <!-- WhatsApp Fast reply -->
               <a class="btn btn-wa"
                  href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote."
                  target="_blank" rel="noopener">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-5 h-5" fill="currentColor" aria-hidden="true">
-                  <path d="M19.11 17.67c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.25-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.09-.4-2.07-1.28-.77-.69-1.29-1.53-1.44-1.79-.15-.26-.02-.4.11-.52.11-.11.26-.31.38-.46.12-.15.17-.26.26-.44.09-.18.05-.33-.02-.46-.07-.12-.59-1.4-.8-1.92-.21-.49-.42-.43-.59-.44l-.5-.01c-.17 0-.46.06-.7.33-.24.26-.93.91-.93 2.22 0 1.31.97 2.54 1.1 2.71.12.18 1.91 2.91 4.63 4.09.64.28 1.15.45 1.54.57.65.2 1.24.18 1.69.11.52-.08 1.53-.62 1.74-1.22.21-.6.21-1.12.14-1.22-.06-.1-.23-.17-.49-.29z"/>
-                  <path d="M27.99 14.66C27.99 8.89 23.1 4 17.33 4 11.56 4 6.67 8.89 6.67 14.66c0 2.33.77 4.48 2.09 6.22L8 28l7.29-1.91a10.6 10.6 0 0 0 2.04.2c5.77 0 10.66-4.89 10.66-10.66zM17.33 25.2c-.61 0-1.21-.08-1.78-.24l-.38-.11-4.26 1.11 1.14-4.14-.12-.4a8.91 8.91 0 1 1 5.4 3.78z"/>
-                </svg>
+                <img class="brand-ico" src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="" aria-hidden="true">
                 Fast reply
               </a>
 
-              <!-- Stripe (brand colour + icon) -->
+              <!-- Stripe -->
               <a class="btn btn-stripe" href="https://buy.stripe.com/28E00l4K67Yf38r9BucQU01" target="_blank" rel="noopener">
-                <!-- Stripe "s" -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" class="w-5 h-5" fill="currentColor" aria-hidden="true">
-                  <path d="M22.5 8.7c-1.3-.9-3.3-1.4-5.4-1.4-2.7 0-4.6 1.2-4.6 3 0 2.1 2.8 2.3 4.9 2.6 2.3.4 3.1.8 3.1 1.6 0 .9-1 1.4-2.5 1.4-1.7 0-3.3-.6-4.7-1.4v3.1c1.6.7 3.1 1 4.7 1 3.1 0 4.9-1.5 4.9-3.6 0-2.2-1.9-3-4.8-3.5-2.4-.4-3.2-.7-3.2-1.5 0-.6.7-1.2 2.3-1.2 1.6 0 3.1.5 4.3 1.1V8.7z"/>
-                </svg>
+                <img class="brand-ico" src="https://cdn.simpleicons.org/stripe/ffffff" alt="" aria-hidden="true">
                 Pay with Card (Stripe)
               </a>
 
-              <!-- PayPal (brand colour + double P icon) -->
+              <!-- PayPal -->
               <a class="btn btn-paypal" href="https://paypal.me/IsrarOCC" target="_blank" rel="noopener">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 20" class="w-6 h-5" aria-hidden="true">
-                  <path fill="#FFFFFF" d="M12.4 3.1h5.4c2.2 0 3.8 1.1 3.8 3.1 0 2.8-2.2 3.8-4.5 3.8h-2l-.5 2.9H11L12.4 3.1zm4.7 4.7c.7 0 1.4-.5 1.4-1.3 0-.6-.5-1-1.4-1h-1l-.4 2.3h1.4z"/>
-                  <path fill="#F7BE00" d="M30.4 4.1h4.6l-1.1 6.6h-4.6l1.1-6.6z"/>
-                </svg>
+                <img class="brand-ico" src="https://cdn.simpleicons.org/paypal/ffffff" alt="" aria-hidden="true">
                 PayPal
               </a>
 
-              <!-- Pay in person – boxed pill -->
+              <!-- Pay in person -->
               <span class="pay-later">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M3 6h18v12H3zM3 10h18" stroke="#64748B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 pay in person (cash/card terminal)
@@ -298,8 +283,7 @@
       <a class="underline" href="mailto:bookings@oxfordexecutivetravel.co.uk">bookings@oxfordexecutivetravel.co.uk</a></p>
     <p>
       <a class="underline" href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote." target="_blank" rel="noopener">
-        <!-- small WhatsApp glyph before text -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="inline w-4 h-4 -mt-0.5" fill="#25D366" aria-hidden="true"><path d="M19.11 17.67c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.25-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.09-.4-2.07-1.28-.77-.69-1.29-1.53-1.44-1.79-.15-.26-.02-.4.11-.52.11-.11.26-.31.38-.46.12-.15.17-.26.26-.44.09-.18.05-.33-.02-.46-.07-.12-.59-1.4-.8-1.92-.21-.49-.42-.43-.59-.44l-.5-.01c-.17 0-.46.06-.7.33-.24.26-.93.91-.93 2.22 0 1.31.97 2.54 1.1 2.71.12.18 1.91 2.91 4.63 4.09.64.28 1.15.45 1.54.57.65.2 1.24.18 1.69.11.52-.08 1.53-.62 1.74-1.22.21-.6.21-1.12.14-1.22-.06-.1-.23-.17-.49-.29z"/><path d="M27.99 14.66C27.99 8.89 23.1 4 17.33 4 11.56 4 6.67 8.89 6.67 14.66c0 2.33.77 4.48 2.09 6.22L8 28l7.29-1.91a10.6 10.6 0 0 0 2.04.2c5.77 0 10.66-4.89 10.66-10.66z"/></svg>
+        <img class="inline brand-ico align-[-2px]" src="https://cdn.simpleicons.org/whatsapp/25D366" alt="" aria-hidden="true">
         WhatsApp Chat — Fast reply
       </a>
     </p>
@@ -309,14 +293,12 @@
     <p>© <span id="year"></span> Oxford Executive Travel • Licensed & Insured</p>
   </footer>
 
-  <!-- Floating WhatsApp -->
+  <!-- Floating WhatsApp (brand icon) -->
   <a href="https://wa.me/447344145197?text=Hi%20Oxford%20Executive%20Travel%2C%20I'd%20like%20a%20quote."
      target="_blank" rel="noopener"
      class="fixed bottom-5 right-5 flex items-center gap-2 bg-[#25D366] text-white font-semibold rounded-full shadow-lg px-4 py-3"
      aria-label="Chat on WhatsApp">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-6 h-6" fill="currentColor" aria-hidden="true">
-      <path d="M19.11 17.67c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.25-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.09-.4-2.07-1.28-.77-.69-1.29-1.53-1.44-1.79-.15-.26-.02-.4.11-.52.11-.11.26-.31.38-.46.12-.15.17-.26.26-.44.09-.18.05-.33-.02-.46-.07-.12-.59-1.4-.8-1.92-.21-.49-.42-.43-.59-.44l-.5-.01c-.17 0-.46.06-.7.33-.24.26-.93.91-.93 2.22 0 1.31.97 2.54 1.1 2.71.12.18 1.91 2.91 4.63 4.09.64.28 1.15.45 1.54.57.65.2 1.24.18 1.69.11.52-.08 1.53-.62 1.74-1.22.21-.6.21-1.12.14-1.22-.06-.1-.23-.17-.49-.29z"/><path d="M27.99 14.66C27.99 8.89 23.1 4 17.33 4 11.56 4 6.67 8.89 6.67 14.66c0 2.33.77 4.48 2.09 6.22L8 28l7.29-1.91a10.6 10.6 0 0 0 2.04.2c5.77 0 10.66-4.89 10.66-10.66z"/>
-    </svg>
+    <img class="brand-ico w-6 h-6" src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="" aria-hidden="true">
     <span class="hidden sm:inline">Chat for a fast reply</span>
   </a>
 
