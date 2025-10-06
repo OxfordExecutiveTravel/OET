@@ -16,7 +16,7 @@
 
   <style>
     html{scroll-behavior:smooth}
-    body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:#0b1220}
+    body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:#0b1220;background:#fff}
     .container{max-width:1120px;margin:0 auto}
     .card{background:#fff;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
     .input{width:100%;border:1px solid #e5e7eb;border-radius:12px;padding:.85rem 1rem;outline:none}
@@ -42,13 +42,25 @@
     .pill-stripe{background:#635BFF;color:#fff}
     .pill-paypal{background:#003087;color:#fff}
 
+    /* Soft background accents (very subtle, stays behind content) */
+    body::before{
+      content:""; position:fixed; inset:-10% -10% auto; height:60vh; pointer-events:none; z-index:0;
+      background:
+        radial-gradient(50% 50% at 20% 10%, rgba(11,107,78,.08), transparent 60%),
+        radial-gradient(40% 40% at 80% 0%, rgba(11,18,32,.06), transparent 60%);
+    }
+
     /* Map sizing */
     #mapCard { height: auto; }
     #map{height:420px;width:100%}
     @media (min-width:768px){ #map{height:100%} }
+
+    /* Scroll reveal (lightweight) */
+    .reveal{opacity:0; transform:translateY(12px); transition:opacity .6s ease, transform .6s ease}
+    .reveal.in{opacity:1; transform:none}
   </style>
 </head>
-<body class="bg-white">
+<body class="bg-white relative">
 
   <!-- Header -->
   <header class="sticky top-0 bg-white/95 backdrop-blur shadow-sm z-50">
@@ -62,7 +74,6 @@
         <a class="nav-link hover:text-emerald-700" href="#uktours">UK Tours</a>
         <a class="nav-link hover:text-emerald-700" href="#europe">Europe</a>
         <a class="nav-link hover:text-emerald-700" href="#courier">Courier</a>
-        <!-- NEW: Pricing link -->
         <a class="nav-link hover:text-emerald-700" href="#pricing">Pricing</a>
         <a class="nav-link hover:text-emerald-700" href="#booking">Booking</a>
         <a class="nav-link hover:text-emerald-700" href="#contact">Contact</a>
@@ -78,7 +89,7 @@
   <section id="top" class="bg-[linear-gradient(120deg,#0b1220,_#0b6b4e)] text-white">
     <div class="container px-4 py-12 md:py-16 grid md:grid-cols-2 gap-10 items-center">
       <!-- Left -->
-      <div>
+      <div class="reveal">
         <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
           Welcome to Oxford Executive Travel
         </h1>
@@ -96,17 +107,31 @@
             Fast reply
           </a>
         </div>
+
+        <!-- Perks row (Wi-Fi + Water) -->
+        <div class="mt-5 flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-sm font-semibold">
+            <!-- wifi icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor"/><path d="M5 13a10 10 0 0 1 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M8.5 16.5a5 5 0 0 1 7 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M2 9a14 14 0 0 1 20 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            Free Wi-Fi on board
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-sm font-semibold">
+            <!-- water icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3s6 7 6 11a6 6 0 1 1-12 0c0-4 6-11 6-11Z" stroke="currentColor" stroke-width="1.7"/><path d="M9 16c1.2.8 4 .8 6 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            Complimentary bottled water
+          </span>
+        </div>
       </div>
 
       <!-- Right -->
-      <div class="card p-5 bg-white text-slate-900">
+      <div class="card p-5 bg-white text-slate-900 reveal">
         <h3 class="text-xl font-bold mb-3">How We Can Help</h3>
         <ul class="space-y-2 text-sm">
           <li><b>Airport Transfers:</b> Heathrow, Gatwick, Luton, Stansted, London City, Birmingham, Bristol & Eurostar.</li>
           <li><b>UK Tours:</b> Cotswolds, Oxford colleges, Blenheim, Bath, Stonehenge, Lake District, Snowdonia, York & Scotland.</li>
           <li><b>Europe & Long-Distance:</b> Paris, Brussels, Amsterdam and beyond — Eurotunnel or ferry.</li>
           <li><b>Courier & Luggage:</b> Same-day delivery, delayed bags, documents, proof of delivery.</li>
-          <li><b>Clear Quotes:</b> Written confirmation before travel.</li>
+          <li><b>On-board Comfort:</b> Free Wi-Fi and complimentary bottled water.</li>
         </ul>
       </div>
     </div>
@@ -114,7 +139,7 @@
 
   <!-- Airport Transfers -->
   <section id="airports" class="container px-4 py-10">
-    <div class="section-head">
+    <div class="section-head reveal">
       <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M2 16l20-8-9 10v4l-3-3-4 2 1-5-5 0z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div>
         <h2 class="text-3xl font-extrabold m-0">Airport Transfers</h2>
@@ -123,16 +148,16 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Meet & Greet</h3><p class="text-sm">Flight tracking, terminal pickup, and help with luggage as standard.</p></div>
-      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Business & Family</h3><p class="text-sm">Quiet, comfortable vehicles. Child seats available on request.</p></div>
-      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Space for Luggage</h3><p class="text-sm">Great for families and longer journeys; space for cases or equipment.</p></div>
+      <div class="card p-5 reveal"><h3 class="font-bold text-lg mb-2">Meet & Greet</h3><p class="text-sm">Flight tracking, terminal pickup, and help with luggage as standard.</p></div>
+      <div class="card p-5 reveal"><h3 class="font-bold text-lg mb-2">Business & Family</h3><p class="text-sm">Quiet, comfortable vehicles. Child seats available on request.</p></div>
+      <div class="card p-5 reveal"><h3 class="font-bold text-lg mb-2">Space for Luggage</h3><p class="text-sm">Great for families and longer journeys; space for cases or equipment.</p></div>
     </div>
   </section>
 
   <!-- UK Tours -->
   <section id="uktours" class="bg-gray-50">
     <div class="container px-4 py-10">
-      <div class="section-head">
+      <div class="section-head reveal">
         <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 10V6l2-1 2 1 2-1 2 1 2-1 2 1v4M6 22v-6h12v6M4 10h16v6H4z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div>
           <h2 class="text-3xl font-extrabold m-0">UK Tours — Cotswolds & British Heritage</h2>
@@ -141,16 +166,16 @@
       </div>
 
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="card p-5"><h3 class="font-bold text-lg mb-2">Private Day Tours</h3><p class="text-sm">Your schedule, photo stops and lunch breaks at your pace.</p></div>
-        <div class="card p-5"><h3 class="font-bold text-lg mb-2">Family & Theme Parks</h3><p class="text-sm">Legoland, Thorpe Park, Chessington & Alton Towers — comfortable returns.</p></div>
-        <div class="card p-5"><h3 class="font-bold text-lg mb-2">Driver-Guide</h3><p class="text-sm">Relaxed pacing with local insights. E-Class for couples; V-Class for groups.</p></div>
+        <div class="card p-5 reveal"><h3 class="font-bold text-lg mb-2">Private Day Tours</h3><p class="text-sm">Your schedule, photo stops and lunch breaks at your pace.</p></div>
+        <div class="card p-5 reveal"><h3 class="font-bold text-lg mb-2">Family & Theme Parks</h3><p class="text-sm">Legoland, Thorpe Park, Chessington & Alton Towers — comfortable returns.</p></div>
+        <div class="card p-5 reveal"><h3 class="font-bold text-lg mb-2">Driver-Guide</h3><p class="text-sm">Relaxed pacing with local insights. E-Class for couples; V-Class for groups.</p></div>
       </div>
     </div>
   </section>
 
   <!-- Europe -->
   <section id="europe" class="container px-4 py-10">
-    <div class="section-head">
+    <div class="section-head reveal">
       <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M3 16l2-6 3-2h6l3 2 2 6M6 16v2m12-2v2M7 16h10M3 16h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div>
         <h2 class="text-3xl font-extrabold m-0">Europe & Long-Distance</h2>
@@ -159,16 +184,16 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Flexible Scheduling</h3><p class="text-sm">Single or multi-stop, day or overnight — built around your plan.</p></div>
-      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Comfort for Distance</h3><p class="text-sm">Executive seating, charging, and space for cases or equipment.</p></div>
-      <div class="card p-5"><h3 class="font-bold text-lg mb-2">Written Quote</h3><p class="text-sm">Clear pricing before travel, with email confirmation.</p></div>
+      <div class="card p-5 reveal"><h3 class="font-bold text-lg mb-2">Flexible Scheduling</h3><p class="text-sm">Single or multi-stop, day or overnight — built around your plan.</p></div>
+      <div class="card p-5 reveal"><h3 class="font-bold text-lg mb-2">Comfort for Distance</h3><p class="text-sm">Executive seating, charging, and space for cases or equipment.</p></div>
+      <div class="card p-5 reveal"><h3 class="font-bold text-lg mb-2">Written Quote</h3><p class="text-sm">Clear pricing before travel, with email confirmation.</p></div>
     </div>
   </section>
 
-  <!-- Courier -->
+  <!-- Same-Day Courier -->
   <section id="courier" class="bg-gray-50">
     <div class="container px-4 py-10">
-      <div class="section-head">
+      <div class="section-head reveal">
         <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M3 7l9-4 9 4-9 4-9-4Zm0 4l9 4 9-4M3 7v10l9 4 9-4V7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div>
           <h2 class="text-3xl font-extrabold m-0">Same-Day Courier & Luggage</h2>
@@ -177,24 +202,44 @@
       </div>
 
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="card p-5"><h3 class="font-bold text-lg mb-2">Direct, Same-Day</h3><p class="text-sm">We collect and drive straight to the destination — no hubs.</p></div>
-        <div class="card p-5"><h3 class="font-bold text-lg mb-2">Luggage & Parcels</h3><p class="text-sm">Airline-delayed bags, passports, laptops, legal documents and more.</p></div>
-        <div class="card p-5"><h3 class="font-bold text-lg mb-2">Proof of Delivery</h3><p class="text-sm">Photo or signature on handover; live updates available.</p></div>
+        <div class="card p-5 reveal"><h3 class="font-bold text-lg mb-2">Direct, Same-Day</h3><p class="text-sm">We collect and drive straight to the destination — no hubs.</p></div>
+        <div class="card p-5 reveal"><h3 class="font-bold text-lg mb-2">Luggage & Parcels</h3><p class="text-sm">Airline-delayed bags, passports, laptops, legal documents and more.</p></div>
+        <div class="card p-5 reveal"><h3 class="font-bold text-lg mb-2">Proof of Delivery</h3><p class="text-sm">Photo or signature on handover; live updates available.</p></div>
       </div>
+    </div>
+  </section>
+
+  <!-- About Us (new, concise and professional) -->
+  <section id="about" class="container px-4 py-10">
+    <div class="section-head reveal">
+      <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3l3 6 6 .9-4.5 4.3 1 6-5.5-3-5.5 3 1-6L3 9.9 9 9l3-6z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <h2 class="text-3xl font-extrabold m-0">About Us</h2>
+        <p class="m-0 text-slate-600">Over 20 years’ professional driving • DBS checked • Fully licensed & insured.</p>
+      </div>
+    </div>
+
+    <div class="card p-5 reveal">
+      <p class="text-slate-700">
+        Our purpose is simple: to provide a smooth, comfortable and professional travel experience. 
+        Every journey should be stress-free, well-planned and suited to your needs. From on-time pick-ups to 
+        clean, comfortable vehicles with free Wi-Fi and complimentary bottled water, we focus on the details that make 
+        travelling with us a pleasure.
+      </p>
     </div>
   </section>
 
   <!-- Booking -->
   <section id="booking" class="bg-gray-50">
     <div class="container px-4 py-10">
-      <div class="section-head">
+      <div class="section-head reveal">
         <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M8 3v4M16 3v4M4 9h16M6 12h6M6 16h8M5 21h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div><h2 class="text-3xl font-extrabold m-0">Book / Get a Quote</h2></div>
       </div>
 
       <div class="grid md:grid-cols-5 gap-6">
         <!-- Form -->
-        <form id="bookingForm" class="card p-5 md:col-span-3">
+        <form id="bookingForm" class="card p-5 md:col-span-3 reveal">
           <div class="grid gap-4">
             <div class="grid md:grid-cols-2 gap-4">
               <div>
@@ -290,7 +335,7 @@
         </form>
 
         <!-- Map (fills card height on desktop) -->
-        <div class="card p-0 md:col-span-2 overflow-hidden rounded-xl" id="mapCard">
+        <div class="card p-0 md:col-span-2 overflow-hidden rounded-xl reveal" id="mapCard">
           <div id="map" class="h-full w-full"></div>
         </div>
       </div>
@@ -300,7 +345,7 @@
   <!-- Pricing -->
   <section id="pricing" class="container px-4 py-8 grid gap-6">
     <!-- Airports -->
-    <div class="card p-5">
+    <div class="card p-5 reveal">
       <h3 class="text-xl font-bold mb-3">Airport Transfers</h3>
       <ul class="grid sm:grid-cols-2 gap-3 text-sm">
         <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
@@ -325,7 +370,7 @@
     </div>
 
     <!-- Popular UK Destinations -->
-    <div class="card p-5">
+    <div class="card p-5 reveal">
       <h3 class="text-xl font-bold mb-3">Popular UK Destinations</h3>
       <ul class="grid sm:grid-cols-2 gap-3 text-sm">
         <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
@@ -350,7 +395,7 @@
     </div>
 
     <!-- Europe -->
-    <div class="card p-5">
+    <div class="card p-5 reveal">
       <h3 class="text-xl font-bold mb-3">Europe & Long-Distance</h3>
       <ul class="grid sm:grid-cols-2 gap-3 text-sm">
         <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
@@ -363,7 +408,7 @@
     </div>
 
     <!-- Courier -->
-    <div class="card p-5">
+    <div class="card p-5 reveal">
       <h3 class="text-xl font-bold mb-3">Same-Day Courier & Luggage</h3>
       <ul class="grid sm:grid-cols-2 gap-3 text-sm">
         <li class="flex justify-between border rounded-lg px-3 py-2 bg-white">
@@ -378,7 +423,7 @@
 
   <!-- Contact -->
   <section id="contact" class="container px-4 py-10">
-    <div class="section-head">
+    <div class="section-head reveal">
       <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M22 16.92V19a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 5.18 2 2 0 0 1 5 3h2.09A2 2 0 0 1 9 4.72l.57 2.26a2 2 0 0 1-.45 1.95l-1 1a16 16 0 0 0 7.88 7.88l1-1a2 2 0 0 1 1.95-.45L19.28 15A2 2 0 0 1 21 16.92Z" stroke="currentColor" stroke-width="1.6"/><path d="M4 4l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div><h2 class="text-3xl font-extrabold m-0">Contact</h2></div>
     </div>
@@ -394,6 +439,14 @@
   <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
     // Equalize map card height to booking form height (desktop)
     function setMapHeightToForm() {
@@ -484,7 +537,7 @@
       });
     }
 
-    // Email submit (prefilled mailto) + background auto-ack (NO layout changes)
+    // Email submit (prefilled mailto) + background auto-ack
     document.getElementById('bookingForm').addEventListener('submit', (e) => {
       e.preventDefault();
       const get = id => document.getElementById(id).value.trim();
@@ -502,7 +555,6 @@
         `Notes: ${get('notes')}\n\n` +
         `Sent from website`;
 
-      // Background auto-ack to customer (fire-and-forget)
       const payload = {
         name: get('name'),
         email: get('email'),
@@ -530,20 +582,18 @@
         fetch('/api/ack', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: json, keepalive: true }).catch(()=>{});
       }
 
-      // Open email app as before
       const mailto = `mailto:bookings@oxfordexecutivetravel.co.uk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       window.location.href = mailto;
     });
   </script>
 
-  <!-- Google Maps JS (replace key if not already injected by Cloudflare) -->
+  <!-- Google Maps JS -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZGBxqIbQwoZOpm0OEScJEuLJxkyIPqyQ&libraries=places&callback=initMap"></script>
 
-  <!-- Floating WhatsApp “Chat now” (overlay only, doesn’t affect layout) -->
   <!-- Floating WhatsApp “Chat now” (official icon in green circle) -->
   <a href="https://wa.me/447344145197"
      class="wa-fab"
-     target="_blank" rel="noopener" aria-label="Chat now on WhatsApp">
+     target="_blank" rel="noopener" aria-label="Chat now on WhatsApp" style="z-index:60">
     <span class="wa-circle">
       <img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="WhatsApp" width="16" height="16">
     </span>
@@ -552,27 +602,17 @@
 
   <style>
     .wa-fab{
-      position:fixed; right:16px; bottom:16px; z-index:60;
+      position:fixed; right:16px; bottom:16px;
       display:inline-flex; align-items:center; gap:10px;
-      background:#128C7E; /* darker pill so the green icon stands out */
-      color:#fff; font-weight:800; padding:12px 16px;
-      border-radius:9999px; box-shadow:0 10px 24px rgba(0,0,0,.18);
-      text-decoration:none;
+      background:#128C7E; color:#fff; font-weight:800; padding:12px 16px;
+      border-radius:9999px; box-shadow:0 10px 24px rgba(0,0,0,.18); text-decoration:none;
     }
     .wa-fab:hover{ filter:brightness(.95) }
-
-    /* Official-style green circle with white glyph */
-    .wa-circle{
-      display:inline-grid; place-items:center;
-      width:28px; height:28px; border-radius:9999px;
-      background:#25D366; flex:0 0 28px;
-    }
+    .wa-circle{ display:inline-grid; place-items:center; width:28px; height:28px; border-radius:9999px; background:#25D366; flex:0 0 28px; }
     .wa-circle img{ width:16px; height:16px; display:block }
-
-    /* FORCE the text to show on mobile (overrides any old rule) */
     .wa-fab-text{ font-size:14px; letter-spacing:.2px; white-space:nowrap; display:inline !important }
     @media (max-width:640px){ .wa-fab-text{ display:inline !important } }
   </style>
-  
+
 </body>
 </html>
