@@ -58,6 +58,18 @@
     /* Scroll reveal (lightweight) */
     .reveal{opacity:0; transform:translateY(12px); transition:opacity .6s ease, transform .6s ease}
     .reveal.in{opacity:1; transform:none}
+    /* Full-page faint background image that changes per section */
+body::after{
+  content:"";
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background-image: var(--page-bg, none);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* subtle parallax */
+  opacity:.08;                   /* make it very faint */
+  filter:saturate(.9) contrast(1.05) brightness(1.05);
+}
+
   </style>
 </head>
 <body class="bg-white relative">
@@ -605,6 +617,36 @@
       const mailto = `mailto:bookings@oxfordexecutivetravel.co.uk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       window.location.href = mailto;
     });
+    // Section-based background images (faint, full-page)
+(function(){
+  const bgMap = [
+    ['#airports', '/img/bg-airports.jpg'],
+    ['#uktours',  '/img/bg-cotswolds.jpg'],
+    ['#europe',   '/img/bg-europe.jpg'],
+    ['#courier',  '/img/bg-courier.jpg'],
+    ['#pricing',  '/img/bg-pricing.jpg']
+  ];
+
+  const setBG = (url) => document.body.style.setProperty('--page-bg', `url("${url}")`);
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const url = e.target.getAttribute('data-bg');
+        if (url) setBG(url);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  bgMap.forEach(([sel, url]) => {
+    const el = document.querySelector(sel);
+    if (el) { el.setAttribute('data-bg', url); io.observe(el); }
+  });
+
+  const first = bgMap.find(([sel]) => document.querySelector(sel));
+  if (first) setBG(first[1]);
+})();
+
   </script>
 
   <!-- Google Maps JS -->
