@@ -1,126 +1,175 @@
 // functions/api/ack.js
-// Auto-acknowledgement to the customer + staff copy via MailChannels (Cloudflare Pages/Workers)
+// Sends an automatic acknowledgement to the customer when they request a quote,
+// and BCCs your team. Works on Cloudflare Pages/Workers via MailChannels.
+
+const BRAND = "Oxford Executive Travel";
+
+// Where customers can reply (goes to your inbox)
+const BOOKINGS_INBOX = "bookings@oxfordexecutivetravel.co.uk";
+
+// You asked to receive a copy of every acknowledgement here:
+const OWNER_COPY = "oxfordexecutivetravel1283@gmail.com";
+
+// "From" must be on your own domain (SPF includes MailChannels already)
+const FROM_EMAIL = "noreply@oxfordexecutivetravel.co.uk";
 
 export const onRequestPost = async (ctx) => {
   try {
-    // Read JSON payload sent from the booking form
+    // Accept both JSON and sendBeacon-without-headers
     const raw = await ctx.request.text();
     let data = {};
     try { data = JSON.parse(raw || "{}"); } catch (_) {}
 
-    const s = (v) => (v ?? "").toString().trim();
+    const get = (k, d = "") => (data[k] ?? d).toString().trim();
 
-    const name    = s(data.name) || "Customer";
-    const email   = s(data.email);           // customer's address (may be empty)
-    const phone   = s(data.phone);
-    const pickup  = s(data.pickup);
-    const dropoff = s(data.dropoff);
-    const date    = s(data.date);
-    const time    = s(data.time);
-    const pax     = s(data.pax);
-    const bags    = s(data.bags);
-    const vehicle = s(data.vehicle);
-    const notes   = s(data.notes);
-    const ref     = s(data.ref) || makeRef();
+    const name    = get("name", "Customer");
+    const email   = get("email", "");
+    const phone   = get("phone", "");
+    const pickup  = get("pickup", "");
+    const dropoff = get("dropoff", "");
+    const date    = get("date", "");
+    const time    = get("time", "");
+    const pax     = get("pax", "");
+    const bags    = get("bags", "");
+    const vehicle = get("vehicle", "");
+    const notes   = get("notes", "");
+    const ref     = get("ref") || makeRef();
 
-    // --- EDIT THIS: where you want a guaranteed copy of every request
-    const OWNER_COPY = "yourgmail@gmail.com";
-
-    // From/reply-to must be in your domain for SPF alignment
-    const FROM_EMAIL = "no-reply@oxfordexecutivetravel.co.uk";
-    const FROM_NAME  = "Oxford Executive Travel";
-    const REPLY_TO   = "bookings@oxfordexecutivetravel.co.uk";
-
-    // --- Customer acknowledgement (only if they entered an email)
-    let ackSent = false;
-    if (email) {
-      const subject = `Thanks — quote request received (${ref})`;
-      const textBody =
-`Hello ${name},
-
-Thanks for your request. Your reference: ${ref}.
-We’ll review the details and reply with a fixed quote shortly.
-
-Summary
-- Pickup:   ${pickup}
-- Drop-off: ${dropoff}
-- Date:     ${date} ${time}
-- Passengers: ${pax}   Luggage: ${bags}
-- Vehicle:  ${vehicle}
-- Notes:    ${notes || "-"}
-
-If anything changes, just reply to this email or WhatsApp +44 7344 145197.
-
-Oxford Executive Travel
-Licensed • Insured • DBS checked
-https://oxfordexecutivetravel.co.uk/`;
-
-      const payload = {
-        personalizations: [{
-          to: [{ email, name }],
-          bcc: [{ email:oxfordexecutivetravel1283@gmail.com }] // you get a copy of the ack as well
-        }],
-        from:     { email: FROM_EMAIL, name: FROM_NAME },
-        reply_to: { email: REPLY_TO,   name: FROM_NAME },
-        subject,
-        content: [{ type: "text/plain", value: textBody }]
-      };
-
-      const r1 = await fetch("https://api.mailchannels.net/tx/v1/send", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      ackSent = r1.ok;
+    if (!email) {
+      return json({ ok: false, error: "Missing customer email" }, 400);
     }
 
-    // --- Staff notification (always)
-    const staffSubject = `New quote ${ref} — ${pickup} → ${dropoff}`;
-    const staffBody =
-`Ref: ${ref}
-Name: ${name}
-Email: ${email || "-"}
-Phone: ${phone || "-"}
+    // ---------- Customer acknowledgement (with BCC to team) ----------
+    const subjectAck = `Thank you — we’re preparing your quote (Ref ${ref})`;
 
-Pickup:   ${pickup}
-Drop-off: ${dropoff}
-Date:     ${date} ${time}
-Passengers: ${pax}   Luggage: ${bags}
-Vehicle:  ${vehicle}
-Notes:    ${notes || "-"}
+    const textAck = [
+      `Hello ${name},`,
+      ``,
+      `Thank you for your enquiry. A member of the team will review the details and reply shortly with a fixed quote.`,
+      ``,
+      `Reference: ${ref}`,
+      `Pickup: ${pickup}`,
+      `Drop-off: ${dropoff}`,
+      `Date & Time: ${date} ${time}`,
+      `Passengers / Luggage: ${pax} pax, ${bags} bags`,
+      `Vehicle: ${vehicle}`,
+      notes ? `Notes: ${notes}` : ``,
+      ``,
+      `If anything changes, you can reply directly to this email.`,
+      ``,
+      `— ${BRAND}`,
+      `Tel: +44 7344 145197`,
+      `Email: bookings@oxfordexecutivetravel.co.uk`,
+      `Website: https://oxfordexecutivetravel.co.uk/`
+    ].join("\n");
 
-UA: ${ctx.request.headers.get("user-agent") || "-"}`;
+    const htmlAck = `
+      <div style="font:14px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial;color:#0b1220">
+        <p>Hello ${escapeHtml(name)},</p>
+        <p>Thank you for your enquiry. A member of the team will review the details and reply shortly with a fixed quote.</p>
+        <table style="border-collapse:collapse;margin:12px 0">
+          <tr><td style="padding:4px 8px;color:#475569">Reference:</td><td style="padding:4px 8px"><b>${escapeHtml(ref)}</b></td></tr>
+          <tr><td style="padding:4px 8px;color:#475569">Pickup:</td><td style="padding:4px 8px">${escapeHtml(pickup)}</td></tr>
+          <tr><td style="padding:4px 8px;color:#475569">Drop-off:</td><td style="padding:4px 8px">${escapeHtml(dropoff)}</td></tr>
+          <tr><td style="padding:4px 8px;color:#475569">Date &amp; Time:</td><td style="padding:4px 8px">${escapeHtml(date)} ${escapeHtml(time)}</td></tr>
+          <tr><td style="padding:4px 8px;color:#475569">Passengers / Luggage:</td><td style="padding:4px 8px">${escapeHtml(pax)} pax, ${escapeHtml(bags)} bags</td></tr>
+          <tr><td style="padding:4px 8px;color:#475569">Vehicle:</td><td style="padding:4px 8px">${escapeHtml(vehicle)}</td></tr>
+          ${notes ? `<tr><td style="padding:4px 8px;color:#475569">Notes:</td><td style="padding:4px 8px">${escapeHtml(notes)}</td></tr>` : ``}
+        </table>
+        <p>If anything changes, you can reply directly to this email.</p>
+        <p style="margin-top:16px">— ${BRAND}<br>
+           Tel: +44 7344 145197<br>
+           Email: bookings@oxfordexecutivetravel.co.uk<br>
+           Website: <a href="https://oxfordexecutivetravel.co.uk/">oxfordexecutivetravel.co.uk</a></p>
+      </div>
+    `.trim();
 
-    const staffPayload = {
+    const ackPayload = {
       personalizations: [{
-        to: [{ email: "bookings@oxfordexecutivetravel.co.uk", name: "Bookings" }],
-        bcc: [{ email: OWNER_COPY }] // extra safety
+        to: [{ email, name }],
+        bcc: [
+          { email: BOOKINGS_INBOX, name: BRAND },
+          { email: OWNER_COPY,     name: "Owner copy" }
+        ]
       }],
-      from:     { email: FROM_EMAIL, name: FROM_NAME },
-      reply_to: { email: email || REPLY_TO, name: name || "Customer" },
-      subject:  staffSubject,
-      content: [{ type: "text/plain", value: staffBody }]
+      from: { email: FROM_EMAIL, name: BRAND },
+      reply_to: { email: BOOKINGS_INBOX, name: BRAND },
+      subject: subjectAck,
+      content: [
+        { type: "text/plain", value: textAck },
+        { type: "text/html",  value: htmlAck }
+      ],
     };
 
-    await fetch("https://api.mailchannels.net/tx/v1/send", {
+    const r1 = await fetch("https://api.mailchannels.net/tx/v1/send", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(staffPayload)
+      body: JSON.stringify(ackPayload),
     });
 
-    return new Response(JSON.stringify({ ok: true, ref, ackSent }), {
-      headers: { "content-type": "application/json" }
-    });
+    if (!r1.ok) {
+      const e = await r1.text().catch(() => "");
+      return json({ ok: false, error: `MailChannels error: ${e || r1.status}` }, 502);
+    }
+
+    // ---------- (Optional) Staff summary email ----------
+    const subjectStaff = `New quote — ${pickup} → ${dropoff} (${date} ${time}) [${ref}]`;
+    const textStaff = [
+      `New quote request`,
+      ``,
+      `Ref: ${ref}`,
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Phone: ${phone}`,
+      ``,
+      `Pickup: ${pickup}`,
+      `Drop-off: ${dropoff}`,
+      `Date & Time: ${date} ${time}`,
+      `Passengers: ${pax}`,
+      `Bags: ${bags}`,
+      `Vehicle: ${vehicle}`,
+      notes ? `Notes: ${notes}` : ``,
+    ].join("\n");
+
+    const staffPayload = {
+      personalizations: [{ to: [{ email: BOOKINGS_INBOX, name: BRAND }] }],
+      from: { email: FROM_EMAIL, name: `${BRAND} Website` },
+      reply_to: { email: email || BOOKINGS_INBOX, name },
+      subject: subjectStaff,
+      content: [{ type: "text/plain", value: textStaff }],
+    };
+
+    // Fire and forget; if it fails we still return success for the customer ack
+    fetch("https://api.mailchannels.net/tx/v1/send", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(staffPayload),
+      // no await
+    }).catch(() => {});
+
+    return json({ ok: true, ref });
 
   } catch (err) {
-    return new Response(JSON.stringify({ ok: false, error: String(err?.message || err) }), {
-      status: 500,
-      headers: { "content-type": "application/json" }
-    });
+    return json({ ok: false, error: (err && err.message) || "Server error" }, 500);
   }
 };
 
-function makeRef(){
-  const d = new Date(), p = (n)=>String(n).padStart(2,"0");
-  return `OET-${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}-${Math.floor(1000+Math.random()*9000)}`;
+// -------- helpers --------
+function makeRef() {
+  const d = new Date();
+  const p = (n) => String(n).padStart(2, "0");
+  return `OET-${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}-${Math.floor(1000 + Math.random()*9000)}`;
+}
+
+function escapeHtml(s = "") {
+  return s.replace(/[&<>"']/g, (ch) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch])
+  );
+}
+
+function json(obj, status = 200) {
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: { "content-type": "application/json" },
+  });
 }
