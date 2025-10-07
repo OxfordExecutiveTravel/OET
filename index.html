@@ -58,17 +58,18 @@
     /* Scroll reveal (lightweight) */
     .reveal{opacity:0; transform:translateY(12px); transition:opacity .6s ease, transform .6s ease}
     .reveal.in{opacity:1; transform:none}
-    /* Full-page faint background image that changes per section */
+    /* Full-page faint background image */
 body::after{
   content:"";
   position:fixed; inset:0; z-index:-1; pointer-events:none;
   background-image: var(--page-bg, none);
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* subtle parallax */
-  opacity:.08;                   /* make it very faint */
-  filter:saturate(.9) contrast(1.05) brightness(1.05);
+  background-attachment: fixed;
+  opacity:.14;                     /* was .08 — a bit stronger */
+  filter: blur(2px) contrast(1.08) brightness(1.06) saturate(1);
 }
+
 
   </style>
 </head>
