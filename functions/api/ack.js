@@ -1,21 +1,28 @@
 // functions/api/ack.js
-// Sends an automatic acknowledgement to the customer when they request a quote,
-// and BCCs your team. Works on Cloudflare Pages/Workers via MailChannels.
+// Auto-acknowledge website quote requests via MailChannels on Cloudflare Pages/Workers.
 
 const BRAND = "Oxford Executive Travel";
 
-// Where customers can reply (goes to your inbox)
+// Where customers can reply (shows in the "Reply-To")
 const BOOKINGS_INBOX = "bookings@oxfordexecutivetravel.co.uk";
 
-// You asked to receive a copy of every acknowledgement here:
+// Your Gmail copy (you asked for this)
 const OWNER_COPY = "oxfordexecutivetravel1283@gmail.com";
 
-// "From" must be on your own domain (SPF includes MailChannels already)
+// The visible "From" (must be your domain; SPF includes mailchannels)
 const FROM_EMAIL = "noreply@oxfordexecutivetravel.co.uk";
+
+// ---- Simple health check so you can visit /api/ack?ping=1 ----
+export const onRequestGet = async (ctx) => {
+  const url = new URL(ctx.request.url);
+  if (url.searchParams.get("ping")) {
+    return new Response("OK", { status: 200, headers: { "content-type": "text/plain" } });
+  }
+  return new Response("Use POST", { status: 405 });
+};
 
 export const onRequestPost = async (ctx) => {
   try {
-    // Accept both JSON and sendBeacon-without-headers
     const raw = await ctx.request.text();
     let data = {};
     try { data = JSON.parse(raw || "{}"); } catch (_) {}
@@ -23,7 +30,7 @@ export const onRequestPost = async (ctx) => {
     const get = (k, d = "") => (data[k] ?? d).toString().trim();
 
     const name    = get("name", "Customer");
-    const email   = get("email", "");
+    const email   = get("email", "");         // customer email
     const phone   = get("phone", "");
     const pickup  = get("pickup", "");
     const dropoff = get("dropoff", "");
@@ -35,11 +42,9 @@ export const onRequestPost = async (ctx) => {
     const notes   = get("notes", "");
     const ref     = get("ref") || makeRef();
 
-    if (!email) {
-      return json({ ok: false, error: "Missing customer email" }, 400);
-    }
+    if (!email) return json({ ok:false, error:"Missing customer email" }, 400);
 
-    // ---------- Customer acknowledgement (with BCC to team) ----------
+    // ---------- Customer acknowledgement (BCC to team + your Gmail) ----------
     const subjectAck = `Thank you — we’re preparing your quote (Ref ${ref})`;
 
     const textAck = [
@@ -106,13 +111,12 @@ export const onRequestPost = async (ctx) => {
       headers: { "content-type": "application/json" },
       body: JSON.stringify(ackPayload),
     });
-
     if (!r1.ok) {
-      const e = await r1.text().catch(() => "");
-      return json({ ok: false, error: `MailChannels error: ${e || r1.status}` }, 502);
+      const e = await r1.text().catch(()=> "");
+      return json({ ok:false, error:`MailChannels error: ${e || r1.status}` }, 502);
     }
 
-    // ---------- (Optional) Staff summary email ----------
+    // ---------- (optional) staff summary ----------
     const subjectStaff = `New quote — ${pickup} → ${dropoff} (${date} ${time}) [${ref}]`;
     const textStaff = [
       `New quote request`,
@@ -131,45 +135,29 @@ export const onRequestPost = async (ctx) => {
       notes ? `Notes: ${notes}` : ``,
     ].join("\n");
 
-    const staffPayload = {
-      personalizations: [{ to: [{ email: BOOKINGS_INBOX, name: BRAND }] }],
-      from: { email: FROM_EMAIL, name: `${BRAND} Website` },
-      reply_to: { email: email || BOOKINGS_INBOX, name },
-      subject: subjectStaff,
-      content: [{ type: "text/plain", value: textStaff }],
-    };
-
-    // Fire and forget; if it fails we still return success for the customer ack
     fetch("https://api.mailchannels.net/tx/v1/send", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(staffPayload),
-      // no await
-    }).catch(() => {});
+      body: JSON.stringify({
+        personalizations: [{ to: [{ email: BOOKINGS_INBOX, name: BRAND }] }],
+        from: { email: FROM_EMAIL, name: `${BRAND} Website` },
+        reply_to: { email: email || BOOKINGS_INBOX, name },
+        subject: subjectStaff,
+        content: [{ type: "text/plain", value: textStaff }],
+      }),
+    }).catch(()=>{});
 
-    return json({ ok: true, ref });
+    return json({ ok:true, ref });
 
   } catch (err) {
-    return json({ ok: false, error: (err && err.message) || "Server error" }, 500);
+    return json({ ok:false, error: (err && err.message) || "Server error" }, 500);
   }
 };
 
-// -------- helpers --------
+// helpers
 function makeRef() {
-  const d = new Date();
-  const p = (n) => String(n).padStart(2, "0");
-  return `OET-${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}-${Math.floor(1000 + Math.random()*9000)}`;
+  const d = new Date(), p = n => String(n).padStart(2, "0");
+  return `OET-${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}-${Math.floor(1000+Math.random()*9000)}`;
 }
-
-function escapeHtml(s = "") {
-  return s.replace(/[&<>"']/g, (ch) =>
-    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch])
-  );
-}
-
-function json(obj, status = 200) {
-  return new Response(JSON.stringify(obj), {
-    status,
-    headers: { "content-type": "application/json" },
-  });
-}
+function escapeHtml(s=""){ return s.replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+function json(obj, status=200){ return new Response(JSON.stringify(obj), { status, headers:{ "content-type":"application/json" } }); }
