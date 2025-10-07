@@ -72,6 +72,47 @@ body::after{
 
 
   </style>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "How long is Oxford ↔ Heathrow?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Typically 60–90 minutes depending on time of day and terminal. We track flights and adjust pick-ups."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do you offer Meet & Greet?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Yes — your driver meets you in arrivals and assists with luggage."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I pay by card / Apple Pay / Google Pay?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Yes — pay securely by card, Apple Pay or Google Pay via Stripe. Cash is also accepted."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do you provide child seats?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Child seats are available on request — please tell us the ages when booking."
+   }
+  }
+ ]
+}
+</script>
+
 </head>
 <body class="bg-white relative">
 
@@ -133,6 +174,15 @@ body::after{
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3s6 7 6 11a6 6 0 1 1-12 0c0-4 6-11 6-11Z" stroke="currentColor" stroke-width="1.7"/><path d="M9 16c1.2.8 4 .8 6 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
             Complimentary bottled water
           </span>
+          <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-sm font-semibold">
+  <!-- clock icon -->
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/>
+    <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+  </svg>
+  24/7 bookings & quotes
+</span>
+
         </div>
       </div>
 
@@ -157,6 +207,11 @@ body::after{
       <div>
         <h2 class="text-3xl font-extrabold m-0">Airport Transfers</h2>
         <p class="m-0 text-slate-600">Door-to-door between Oxford and all UK airports: Heathrow, Gatwick, Luton, Stansted, London City, Birmingham & Bristol. Eurostar St Pancras covered.</p>
+        <p class="m-0 mt-2 text-slate-600 text-sm">
+  Areas covered: Oxford & Oxfordshire including Botley, Boars Hill, Cowley, Headington, Horspath, Marston,
+  Wolvercote, Wheatley, The Hinkseys, Littlemore, Sandford & Sandhills.
+</p>
+
       </div>
     </div>
 
@@ -728,6 +783,38 @@ body::after{
     .wa-fab-text{ font-size:14px; letter-spacing:.2px; white-space:nowrap; display:inline !important }
     @media (max-width:640px){ .wa-fab-text{ display:inline !important } }
   </style>
+  <!-- FAQs -->
+<section id="faq" class="container px-4 py-10">
+  <div class="section-head">
+    <svg class="icon" viewBox="0 0 24 24" fill="none">
+      <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm0 14h0m0-2.5a3.5 3.5 0 1 0-3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div>
+      <h2 class="text-3xl font-extrabold m-0">FAQs</h2>
+      <p class="m-0 text-slate-600">Answers to common questions about Oxford airport transfers.</p>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-6">
+    <div class="card p-5">
+      <h3 class="font-bold">How long is Oxford ↔ Heathrow?</h3>
+      <p class="text-sm text-slate-700">Typically 60–90 minutes depending on time of day and terminal. We track flights and adjust pick-ups.</p>
+    </div>
+    <div class="card p-5">
+      <h3 class="font-bold">Do you offer Meet &amp; Greet?</h3>
+      <p class="text-sm text-slate-700">Yes — your driver meets you in arrivals and assists with luggage.</p>
+    </div>
+    <div class="card p-5">
+      <h3 class="font-bold">Can I pay by card / Apple Pay / Google Pay?</h3>
+      <p class="text-sm text-slate-700">Yes — pay securely by card, Apple Pay or Google Pay via Stripe. Cash is also accepted.</p>
+    </div>
+    <div class="card p-5">
+      <h3 class="font-bold">Do you provide child seats?</h3>
+      <p class="text-sm text-slate-700">Child seats are available on request — please tell us the ages when booking.</p>
+    </div>
+  </div>
+</section>
+
 
 </body>
 </html>
