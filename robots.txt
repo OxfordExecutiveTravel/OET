@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oxfordexecutivetravel.co.uk/sitemap.xml
