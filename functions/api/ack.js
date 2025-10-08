@@ -1,108 +1,101 @@
 // functions/api/ack.js
-// Auto-acknowledgement email for quote requests (Cloudflare Pages Functions + MailChannels)
+export async function onRequest({ request }) {
+  // CORS + simple GET healthcheck
+  if (request.method === "OPTIONS") return new Response(null, { headers: corsHeaders() });
+  if (request.method !== "POST") return new Response("OK: /api/ack is live", { headers: corsHeaders() });
 
-export const onRequestPost = async (ctx) => {
-  try {
-    // Read JSON body (sendBeacon/fetch both OK)
-    const raw = await ctx.request.text();
-    const data = raw ? JSON.parse(raw) : {};
+  let data = {};
+  try { data = await request.json(); } catch (_) {}
 
-    // Basic fields (defensive defaults)
-    const name    = (data.name || "Customer").toString().trim();
-    const email   = (data.email || "").toString().trim();
-    const phone   = (data.phone || "").toString().trim();
-    const pickup  = (data.pickup || "").toString().trim();
-    const dropoff = (data.dropoff || "").toString().trim();
-    const date    = (data.date || "").toString().trim();
-    const time    = (data.time || "").toString().trim();
-    const pax     = (data.pax || "").toString().trim();
-    const bags    = (data.bags || "").toString().trim();
-    const vehicle = (data.vehicle || "").toString().trim();
-    const notes   = (data.notes || "").toString().trim();
-    const ref     = (data.ref || makeRef());
+  const {
+    name = "Customer", email = "", phone = "",
+    pickup = "", dropoff = "", date = "", time = "",
+    pax = "", bags = "", vehicle = "", notes = "",
+    ref = `OET-${Date.now()}`
+  } = data;
 
-    if (!email) {
-      return new Response('Missing customer email', { status: 400 });
-    }
+  const subject = `Thanks — we received your request (ref ${ref})`;
+  const ownerSubject = `New quote request ${ref} — ${pickup} → ${dropoff}`;
 
-    // ---- CONFIGURE YOUR DESTINATION/ROUTING HERE ----
-    const BOOKINGS_INBOX = "bookings@oxfordexecutivetravel.co.uk";     // shown in Reply-To and internal copy
-    const INTERNAL_FALLBACK = "oxfordexecutivetravel1283@gmail.com";   // your Gmail
+  const htmlCustomer = `
+    <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial">
+      <h2>Thanks ${escapeHtml(name)}, we’ve got your request.</h2>
+      <p>Ref: <b>${ref}</b></p>
+      <p>We’ll reply shortly with a fixed quote.</p>
+      <hr>
+      <p><b>Trip</b>: ${escapeHtml(pickup)} → ${escapeHtml(dropoff)}<br>
+      <b>Date</b>: ${escapeHtml(date)} &nbsp; <b>Time</b>: ${escapeHtml(time)}<br>
+      <b>Passengers</b>: ${escapeHtml(pax)} &nbsp; <b>Luggage</b>: ${escapeHtml(bags)}<br>
+      <b>Vehicle</b>: ${escapeHtml(vehicle)}</p>
+      <p><b>Notes</b>: ${escapeHtml(notes)}</p>
+      <hr>
+      <p>Oxford Executive Travel • +44 7344 145197 • bookings@oxfordexecutivetravel.co.uk</p>
+    </div>`;
 
-    // Subject + body (plain text, friendly + low-spammy)
-    const subject = `Thanks ${name} — we’ve received your quote request (Ref ${ref})`;
-    const textBody =
-`Hello ${name},
+  const htmlOwner = `
+    <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial">
+      <h2>New quote request — ${escapeHtml(pickup)} → ${escapeHtml(dropoff)}</h2>
+      <p>Ref: <b>${ref}</b></p>
+      <p><b>Name</b>: ${escapeHtml(name)}<br>
+      <b>Email</b>: ${escapeHtml(email)}<br>
+      <b>Phone</b>: ${escapeHtml(phone)}</p>
+      <p><b>Date</b>: ${escapeHtml(date)} &nbsp; <b>Time</b>: ${escapeHtml(time)}<br>
+      <b>Passengers</b>: ${escapeHtml(pax)} &nbsp; <b>Luggage</b>: ${escapeHtml(bags)}<br>
+      <b>Vehicle</b>: ${escapeHtml(vehicle)}</p>
+      <p><b>Notes</b>: ${escapeHtml(notes)}</p>
+    </div>`;
 
-Thanks for getting in touch with Oxford Executive Travel — your quote request has been received.
+  const from = { email: "no-reply@oxfordexecutivetravel.co.uk", name: "Oxford Executive Travel" };
 
-Request details (Ref ${ref})
-• Pickup:   ${pickup || "-"}
-• Drop-off: ${dropoff || "-"}
-• Date:     ${date || "-"}   Time: ${time || "-"}
-• Passengers: ${pax || "-"}  Luggage: ${bags || "-"}
-• Vehicle:  ${vehicle || "-"}
-• Notes:    ${notes || "-"}
-
-What happens next
-• We’ll review your request and reply with a fixed written quote shortly.
-• For anything urgent, you can WhatsApp or call us on +44 7344 145197.
-
-Kind regards,
-Oxford Executive Travel
-bookings@oxfordexecutivetravel.co.uk • +44 7344 145197
-`;
-
-    // MailChannels payload
-    const payload = {
-      personalizations: [
-        {
-          to: [{ email, name }],
-        },
-        // BCC a copy to your internal mailbox so you see every ack
-        {
-          bcc: [{ email: INTERNAL_FALLBACK, name: "OET Internal" }]
-        }
-      ],
-      from: { email: "ack@oxfordexecutivetravel.co.uk", name: "Oxford Executive Travel" },
-      reply_to: { email: BOOKINGS_INBOX, name: "Bookings — Oxford Executive Travel" },
-      subject,
-      headers: {
-        // These help mailbox providers understand this is an automatic acknowledgement
-        "Auto-Submitted": "auto-replied",
-        "Precedence": "auto_reply",
-        "X-Ack-Ref": ref,
-        // Optional unsubscribe header (points to your bookings inbox)
-        "List-Unsubscribe": "<mailto:bookings@oxfordexecutivetravel.co.uk?subject=unsubscribe>"
-      },
+  if (email) {
+    await sendMail({
+      personalizations: [{ to: [{ email, name }] }],
+      from, subject,
       content: [
-        { type: "text/plain", value: textBody }
-      ]
-    };
-
-    const r = await fetch("https://api.mailchannels.net/tx/v1/send", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(payload),
+        { type: "text/plain", value: stripHtml(htmlCustomer) },
+        { type: "text/html", value: htmlCustomer }
+      ],
+      headers: { "Reply-To": "bookings@oxfordexecutivetravel.co.uk" }
     });
-
-    if (!r.ok) {
-      const e = await r.text();
-      return new Response(`MailChannels error: ${e}`, { status: 502 });
-    }
-
-    return new Response(JSON.stringify({ ok: true, ref }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" }
-    });
-
-  } catch (err) {
-    return new Response(`Error: ${err.message}`, { status: 500 });
   }
-};
 
-function makeRef() {
-  const d = new Date();
-  const p = (n) => String(n).padStart(2, "0");
-  return `OET-${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}-${Math.floor(1000+Math.random()*9000)}`;
+  await sendMail({
+    personalizations: [{
+      to: [
+        { email: "bookings@oxfordexecutivetravel.co.uk", name: "Bookings" },
+        { email: "info@oxfordexecutivetravel.co.uk", name: "Info" }
+      ]
+    }],
+    from, subject: ownerSubject,
+    content: [
+      { type: "text/plain", value: stripHtml(htmlOwner) },
+      { type: "text/html", value: htmlOwner }
+    ],
+    headers: { "Reply-To": email || "bookings@oxfordexecutivetravel.co.uk" }
+  });
+
+  return new Response(JSON.stringify({ ok: true, ref }), {
+    headers: { "content-type": "application/json", ...corsHeaders() }
+  });
+}
+
+async function sendMail(payload) {
+  await fetch("https://api.mailchannels.net/tx/v1/send", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+}
+function corsHeaders() {
+  return {
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "POST,GET,OPTIONS",
+    "access-control-allow-headers": "content-type"
+  };
+}
+function stripHtml(s) { return s.replace(/<[^>]+>/g, ""); }
+function escapeHtml(s) {
+  return String(s ?? "").replace(/[&<>"']/g, c =>
+    ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])
+  );
 }
