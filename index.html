@@ -12,8 +12,7 @@
   <meta name="theme-color" content="#0b1220">
   
   <!-- Favicon (quick) -->
-<link rel="icon" type="image/png" href="/logo.png?v=1">
-
+  <link rel="icon" type="image/png" href="/logo.png?v=1">
 
   <!-- Performance: font & logo preloads -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -124,27 +123,28 @@
         <a class="underline" href="tel:+447344145197">+44&nbsp;7344&nbsp;145197</a>
         <a class="btn btn-primary" href="#booking">Get a Quote</a>
       </div>
-      + <!-- Mobile menu button -->
-+ <button id="menuBtn" class="ml-auto md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-slate-200"
-+         aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
-+   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-+     <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-+   </svg>
-+ </button>
-    </div>
-    + <!-- Mobile dropdown (hidden by default) -->
-+ <div id="mobileNav" class="md:hidden border-t border-slate-200 bg-white hidden">
-+   <nav class="container px-4 py-3 grid gap-3">
-+     <a class="block py-2 font-semibold hover:text-emerald-700" href="#airports">Airport Transfers</a>
-+     <a class="block py-2 font-semibold hover:text-emerald-700" href="#uktours">UK Tours</a>
-+     <a class="block py-2 font-semibold hover:text-emerald-700" href="#europe">Europe</a>
-+     <a class="block py-2 font-semibold hover:text-emerald-700" href="#courier">Courier</a>
-+     <a class="block py-2 font-semibold hover:text-emerald-700" href="#pricing">Pricing</a>
-+     <a class="block py-2 font-semibold hover:text-emerald-700" href="#booking">Booking</a>
-+     <a class="block py-2 font-semibold hover:text-emerald-700" href="#contact">Contact</a>
-+   </nav>
-+ </div>
 
+      <!-- Mobile menu button -->
+      <button id="menuBtn" class="ml-auto md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-slate-200"
+              aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile dropdown (hidden by default) -->
+    <div id="mobileNav" class="md:hidden border-t border-slate-200 bg-white hidden">
+      <nav class="container px-4 py-3 grid gap-3">
+        <a class="block py-2 font-semibold hover:text-emerald-700" href="#airports">Airport Transfers</a>
+        <a class="block py-2 font-semibold hover:text-emerald-700" href="#uktours">UK Tours</a>
+        <a class="block py-2 font-semibold hover:text-emerald-700" href="#europe">Europe</a>
+        <a class="block py-2 font-semibold hover:text-emerald-700" href="#courier">Courier</a>
+        <a class="block py-2 font-semibold hover:text-emerald-700" href="#pricing">Pricing</a>
+        <a class="block py-2 font-semibold hover:text-emerald-700" href="#booking">Booking</a>
+        <a class="block py-2 font-semibold hover:text-emerald-700" href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
   <!-- Hero -->
@@ -163,7 +163,7 @@
 
         <div class="mt-5 flex flex-wrap gap-2">
           <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-sm font-semibold">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor"/><path d="M5 13a10 10 0 0 1 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M8.5 16.5a5 5 0 0 1 7 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M2 9a14 14 0 0 1 20 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor"/><path d="M5 13a10 10 0 0 1 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M8.5 16.5a5 5 0 0 1 7 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
             Free Wi-Fi on board
           </span>
           <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-sm font-semibold">
@@ -448,39 +448,6 @@
     window.addEventListener('resize', setMapHeightToForm);
     document.addEventListener('DOMContentLoaded', setMapHeightToForm);
 
-      // Section-based background images
-  (function(){
-    const bgMap = [
-      ['#airports','/img/bg-airports.jpg'],
-      ['#uktours','/img/bg-cotswolds.jpg'],
-      ['#europe','/img/bg-europe.jpg'],
-      ['#courier','/img/bg-courier.jpg'],
-      ['#pricing','/img/bg-pricing.jpg']
-    ];
-    const setBG = (url)=>document.body.style.setProperty('--page-bg', `url("${url}")`);
-    const bgIO = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ const url=e.target.getAttribute('data-bg'); if(url) setBG(url); } }); }, {threshold:0.5});
-    bgMap.forEach(([sel,url])=>{ const el=document.querySelector(sel); if(el){ el.setAttribute('data-bg',url); bgIO.observe(el);} });
-    const first = bgMap.find(([sel])=>document.querySelector(sel)); if(first) setBG(first[1]);
-  })();
-+
-+  // Mobile menu toggle
-+  (function(){
-+    const btn = document.getElementById('menuBtn');
-+    const panel = document.getElementById('mobileNav');
-+    if (!btn || !panel) return;
-+    const links = panel.querySelectorAll('a[href^="#"]');
-+    const close = () => { panel.classList.add('hidden'); btn.setAttribute('aria-expanded','false'); };
-+    btn.addEventListener('click', () => {
-+      const isOpen = !panel.classList.contains('hidden');
-+      panel.classList.toggle('hidden');
-+      btn.setAttribute('aria-expanded', String(!isOpen));
-+    });
-+    // Close after clicking a link (so it scrolls to the section and menu hides)
-+    links.forEach(a => a.addEventListener('click', close));
-+    // ESC to close
-+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
-+  })();
-
     // Google Maps + Places
     let map, pickupAutocomplete, dropoffAutocomplete, matrix;
     function initMap() {
@@ -553,6 +520,22 @@
       const bgIO = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ const url=e.target.getAttribute('data-bg'); if(url) setBG(url); } }); }, {threshold:0.5});
       bgMap.forEach(([sel,url])=>{ const el=document.querySelector(sel); if(el){ el.setAttribute('data-bg',url); bgIO.observe(el);} });
       const first = bgMap.find(([sel])=>document.querySelector(sel)); if(first) setBG(first[1]);
+    })();
+
+    // Mobile menu toggle (tiny, no CLS)
+    (function(){
+      const btn = document.getElementById('menuBtn');
+      const panel = document.getElementById('mobileNav');
+      if (!btn || !panel) return;
+      const links = panel.querySelectorAll('a[href^="#"]');
+      const close = () => { panel.classList.add('hidden'); btn.setAttribute('aria-expanded','false'); };
+      btn.addEventListener('click', () => {
+        const isOpen = !panel.classList.contains('hidden');
+        panel.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+      links.forEach(a => a.addEventListener('click', close));
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
     })();
   </script>
 
