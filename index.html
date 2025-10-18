@@ -629,13 +629,14 @@
   "@type": "TaxiService",
   "name": "Oxford Executive Travel",
   "url": "https://oxfordexecutivetravel.co.uk/",
-  "image": "https://oxfordexecutivetravel.co.uk/logo.png",
+  "logo": "https://oxfordexecutivetravel.co.uk/logo.png",
   "telephone": "+44 7344 145197",
-  "areaServed": ["Oxford","Oxfordshire","Heathrow","Gatwick","Luton","Stansted","Birmingham"],
-  "serviceArea": {
-    "@type": "AdministrativeArea",
-    "name": "Oxfordshire, UK"
-  },
+  "priceRange": "££",
+  "serviceType": ["Airport transfers","Private tours","Same-day courier"],
+  "areaServed": [
+    "Oxford","Oxfordshire","Heathrow","Gatwick","Luton",
+    "Stansted","Birmingham Airport","Cotswolds","Stonehenge","Bath"
+  ],
   "openingHoursSpecification": [{
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
@@ -643,10 +644,41 @@
     "closes": "23:59"
   }],
   "paymentAccepted": ["Cash","Card","Apple Pay","Google Pay","Stripe","PayPal"],
-  "priceRange": "££",
-  "sameAs": ["https://wa.me/447344145197"]
+  "sameAs": ["https://wa.me/447344145197"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Popular routes & services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "url": "https://oxfordexecutivetravel.co.uk/#airports-heathrow",
+        "itemOffered": { "@type": "Service", "name": "Oxford ↔ Heathrow taxi" }
+      },
+      {
+        "@type": "Offer",
+        "url": "https://oxfordexecutivetravel.co.uk/#airports-gatwick",
+        "itemOffered": { "@type": "Service", "name": "Oxford ↔ Gatwick taxi" }
+      },
+      {
+        "@type": "Offer",
+        "url": "https://oxfordexecutivetravel.co.uk/#uktours-cotswolds",
+        "itemOffered": { "@type": "Service", "name": "Cotswolds private tour from Oxford" }
+      },
+      {
+        "@type": "Offer",
+        "url": "https://oxfordexecutivetravel.co.uk/#uktours-stonehenge-bath",
+        "itemOffered": { "@type": "Service", "name": "Stonehenge & Bath tour from Oxford" }
+      },
+      {
+        "@type": "Offer",
+        "url": "https://oxfordexecutivetravel.co.uk/#courier-uk-europe",
+        "itemOffered": { "@type": "Service", "name": "Same-day courier (UK & Europe)" }
+      }
+    ]
+  }
 }
 </script>
+
 
 
 
